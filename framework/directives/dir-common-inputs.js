@@ -244,8 +244,8 @@
 
 					scope.priceVal = /^[0-9]{0,}[\.]{1,1}([0-9]{2})$/;
 
-					// trailing 0's are being dropped after save, add them back here
-					if (scope.model !== null && scope.model.toFixed) {
+					// If trailing zeros are missing, add them.
+					if (scope.model != null && scope.model.toFixed) {
 						scope.model = scope.model.toFixed(2);
 					}
 
