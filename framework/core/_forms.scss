@@ -188,8 +188,8 @@ p.required {
 input.error,
 .error textarea,
 textarea.error,
-.ng-invalid,
-.ng-invalid-pattern {
+input.ng-invalid,
+input.ng-invalid-pattern {
 	border-color: $alertColor;
 	background-color: rgba($alertColor, 0.1);
 	@include border-corner-radius(bottom, left, 0);
