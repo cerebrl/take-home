@@ -181,29 +181,7 @@ that IE7/8 do not support :nth-child.
 }
 
 /* Very large screens */
-@media only screen and (min-width: $screenXlarge) {
-
-	.row {
-		margin: 0 (-($columnGutter * 2));
-	}
-	.oneColumn,
-	.oneColumns,
-	.twoColumns,
-	.threeColumns,
-	.fourColumns,
-	.fiveColumns,
-	.sixColumns,
-	.sevenColumns,
-	.eightColumns,
-	.nineColumns,
-	.tenColumns,
-	.elevenColumns,
-	.twelveColumns,
-	.thirteenColumns,
-	.fourteenColumns {
-		padding: 0 ($columnGutter * 2);
-	}
-}
+@media only screen and (min-width: $screenXlarge) {}
 
 /* Medium screens */
 @media only screen and (max-width: $screenMedium) and (min-width: $screenSmall) {}
