@@ -88,13 +88,14 @@ $(function ($, undefined) {
 	// Give focus to the first input element
 	function focusFirstInput(overlay) {
 
-		// Required so that the focus is applied once the element is no longer hidden
-		window.setTimeout(function () {
+		if ($(overlay).find('.focus')) {
 
-			// Find the first input that is a child of the opened modal and give it focus
+			$(overlay).find('.focus').focus();
+
+		} else {
+
 			$(overlay).find('input').first().focus();
-
-		}, 300);
+		}
 	}
 
 //-------------------------------//
@@ -120,8 +121,9 @@ $(function ($, undefined) {
 			// Trigget setTimeout to prevent the focus event from jumping
 			// the page up to top.
 			setTimeout(function() {
+
 				focusFirstInput(overlay);
-			}, 500);
+			}, 750);
 		}
 
 		// Make sure that no overlay matching the type of the clicked overlay is already open
