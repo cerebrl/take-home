@@ -117,7 +117,11 @@ $(function ($, undefined) {
 			showModalBackground();
 
 			// If the modal contains inputs give focus to the first
-			focusFirstInput(overlay);
+			// Trigget setTimeout to prevent the focus event from jumping
+			// the page up to top.
+			setTimeout(function() {
+				focusFirstInput(overlay);
+			}, 500);
 		}
 
 		// Make sure that no overlay matching the type of the clicked overlay is already open
@@ -213,9 +217,9 @@ $(function ($, undefined) {
 		var target = $(this);
 
 		// Save the kind of overlay as a variable
-		var kind = $(target.attr('href')).attr('data-overlay');
+		var kind = $(target.attr('href') || this.getAttribute('data-modal-id')).attr('data-overlay');
 
-		var overlayId = this.getAttribute('href');
+		var overlayId = this.getAttribute('href') || this.getAttribute('data-modal-id');
 		openOverlay(overlayId, kind, e, target);
 
 		// Clear the target variable
