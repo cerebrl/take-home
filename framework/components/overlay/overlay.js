@@ -88,8 +88,6 @@ $(function ($, undefined) {
 	// Give focus to the first input element
 	function focusFirstInput(overlay) {
 
-		console.log($(overlay).find('.focus'));
-
 		if ($(overlay).find('.focus').length !== 0) {
 
 			$(overlay).find('.focus').focus();
