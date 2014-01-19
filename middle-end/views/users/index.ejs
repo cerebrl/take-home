@@ -1,0 +1,36 @@
+<% include ../partials/head %>
+	<% include ../partials/header %>
+
+		<div class="rowMain">
+			<div class="row">
+				<div class="sixColumns">
+					<h1 class="pageTitle">Users</h1>
+					<ul class="twelveColumns list">
+						<% for(var i = 0; i < users.length; i++) {%>
+							<li>
+								<a href="/admin/users/<%= users[i].id.toString() %>"><%= users[i].email %></a>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+				<div class="sixColumns newUser">
+					<form action="/admin/users" method="post">
+						<div class="row">
+							<p class="elevenColumns">Add a user by entering an email and password or select a user to edit.</p>
+							<div class="twelveColumns">
+								<label for="email">Email</label>
+								<input id="email" type="email" name="email" value="">
+							</div>
+							<div class="twelveColumns">
+								<label for="password">Password</label>
+								<input id="password" type="password" name="password" value="">
+							</div>
+							<div class="twelveColumns right">
+								<a href="/admin" class="button default">Cancel</a>
+								<button type="submit" class="button primary">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+
+<% include ../partials/footer %>

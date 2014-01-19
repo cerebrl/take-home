@@ -1,0 +1,1 @@
+{ "options" : { "create" : "gluten_menu" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "kp-cms.gluten_menu", "name" : "_id_" } ] }

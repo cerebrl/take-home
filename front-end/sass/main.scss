@@ -1,0 +1,48 @@
+@charset 'UTF-8';
+
+/*******************************************
+ * THIS MAKES UP THE CORE OF THE FRAMEWORK *
+ *******************************************/
+
+// These come from core compass framework, not phi test
+@import "compass/css3";
+
+// This is all your settings variables
+@import 'settings';
+
+// This is your core, normalize and HTML5 Boilerplate CSS
+@import '../phi/framework/core/_globals';
+@import '../phi/framework/core/_ratios';
+@import '../phi/framework/core/_typography';
+@import '../phi/framework/core/_forms';
+@import '../phi/framework/core/_buttons';
+
+/*******************************************
+ * THESE MAKE UP THE COMPONENTS OF PHI     *
+ *******************************************
+ * NOTE: Comment out the components you do *
+ * not want to use in your site/app.       *
+********************************************/
+
+// Include Grid System
+@import '../phi/framework/components/grid-system/_f_convert-number-to-word';
+@import '../phi/framework/components/grid-system/_f_grid-calc';
+@import '../phi/framework/components/grid-system/_m_respond-to';
+@import '../phi/framework/components/grid-system/_grid';
+
+// Include Navigation Styles
+@import '../phi/framework/components/navigation/_navigation';
+
+// Helper Classes Styles
+@import '../phi/framework/components/helper-classes/_helper-classes';
+
+// Overalay Styles
+@import '../phi/framework/components/overlay/_overlay';
+
+// Alert Styles
+@import '../phi/framework/components/alerts/_alerts';
+
+// Project Specific Styles
+// Place all project specific styles here
+// @import '_icons';
+@import '_project';

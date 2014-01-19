@@ -1,0 +1,15 @@
+# Ignore Mac OS specific files
+.DS_Store
+
+# Ignore IDE meta files
+.idea
+.settings
+
+# Ignore Sass Cache
+.sass-cache
+
+# Ignore Node Modules
+node_modules
+
+# Ignore Managed Packages
+vendor-bower

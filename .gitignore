@@ -1,0 +1,65 @@
+########################
+# node.js / npm
+########################
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+results
+
+npm-debug.log
+
+
+########################
+# misc / editors
+########################
+
+*~
+*#
+.DS_STORE
+.DS_Store
+.netbeans
+nbproject
+.idea
+.settings
+
+
+########################
+# local config
+########################
+
+config/local.js
+
+
+########################
+# Caches
+########################
+
+.sass-cache
+
+
+########################
+# Managed Packages
+########################
+
+front-end/vendor-bower/
+node_modules
+
+########################
+# Redis Files
+########################
+
+dump.rdb
+
+########################
+# Vagrant VMs
+########################
+
+.vagrant

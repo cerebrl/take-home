@@ -1,0 +1,27 @@
+<% include partials/head %>
+	<% include partials/header %>
+
+		<div class="rowMain loginPage">
+			<div class="twelveColumns">
+				
+				<header class="center">
+					<div class="logo"><img src="img/logo_paypal.png"></div>
+					<h2>Welcome to PayPal Mobile!</h2>
+					<h3 class="subheader">Please Login</h3>
+				</header>
+				
+				<form action="/login" method="post" class="twelveColumns">
+					<label for="email">Email</label>
+					<input id="email" type="email" name="email" value="">
+					
+					<label for="password">Password</label>
+					<input id="password" type="password" name="password" value="">
+					
+					<button type="submit" class="button primary fullWidth">Submit</button>
+				</form>
+				<hr>
+				<a href="#">Forgot your password?</a>
+			</div>
+		</div>
+
+<% include partials/footer %>

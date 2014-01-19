@@ -1,0 +1,1 @@
+{ "options" : { "create" : "sushi_menu" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "kp-cms.sushi_menu", "name" : "_id_" } ] }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+
+		<meta name="viewport"
+			  content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+		<link type="text/css"rel="stylesheet" href="/css/main.css">
+
+		<!-- If user === true, then this is a subsequent page, and
+			 this has hopefully been cached -->
+		<% if (user) { %>
+			<script type="text/javascript"
+					src="/vendor-bower/angular/angular.min.js"></script>
+		<% } %>
+
+		<!-- Load remaining js files asynchronously -->
+		<script type="text/javascript" data-main="/js/main.js"
+				src="/vendor-bower/requirejs/require.js"></script>
+	</head>

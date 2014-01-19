@@ -1,0 +1,26 @@
+<% include partials/head %>
+	<% include partials/header %>
+
+		<div class="rowMain">
+			<div class="twelveColumns">
+
+				<div class="topbar row">
+					<div class="fourMobileColumns"><span>Menu</span></div>
+					<div class="sixMobileColumns"><img src="/img/logo_paypal.png"></div>
+					<div class="fourMobileColumns"></div>
+				</div>
+
+				<h2>Hello, <%= user.firstName %>!</h2>
+
+				<h3>Current Balance:</h3>
+				<div class="balance">
+					<%= balance %>
+				</div>
+
+				<hr>
+
+				<h3>What would you like to do?</h3>
+			</div>
+		</div>
+
+<% include partials/footer %>
