@@ -8,6 +8,7 @@
 
 	// Create global var for attaching PHI modules.
 	window.PHI = {};
+
 	requirejs.config({
 
 		// Map out all "modules" to paths
@@ -15,7 +16,6 @@
 
 			// Bower dependencies
 			'jquery': '/vendor-bower/jquery/jquery.min',
-			'showdown': '/vendor-bower/showdown/compressed/showdown',
 
 			// UI/Ix jQuery framework
 			'overlay': '/phi/framework/components/overlay/overlay',
@@ -33,8 +33,17 @@
 	});
 
 	// Load in js
-
 	require(['common-inputs', 'overlay'], function(commonInputs, overlay) {
+
+		// Menu drawer animation
+		var menuButton = document.getElementById('js_menuButton'),
+			mainPanel = document.getElementById('js_mainPanel');
+
+		$(menuButton).click(function () {
+
+			$(mainPanel).toggleClass('menuOpen');
+		});
+
 
 		angular.module('TH', ['phi-common-components']).factory('dataServices', [
 

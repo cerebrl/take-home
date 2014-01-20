@@ -2,6 +2,7 @@
   "name": "take-home",
   "dependencies": {
     "angular": "~1.2.6",
-    "requirejs": "~2.1.9"
+    "requirejs": "~2.1.9",
+    "jquery": "~2.0.3"
   }
 }
