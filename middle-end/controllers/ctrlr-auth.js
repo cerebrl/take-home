@@ -1,11 +1,6 @@
 /**
- * AuthController
- *
- * @module		:: Controller
- * @description	:: Contains logic for handling requests.
+ * Authorization Controller
  */
-
-var passport = require('passport');
 
 var init = function () {
 
@@ -16,7 +11,7 @@ var init = function () {
 		home: function (req, res) {
 
 			res.render('home', {
-				title: "Home | PayPal",
+				title: 'Home | PayPal',
 				user:  req.user.toObject(),
 				balance: '$300.00'
 			});
@@ -26,12 +21,12 @@ var init = function () {
 
 			if (req.user) {
 
-				res.redirect('/home');
+				res.redirect('/mobile');
 
 			} else {
 
 				res.render('login', {
-						title: 'Login',
+						title: 'Login | PayPal',
 						user: null
 					});
 			}
@@ -39,7 +34,7 @@ var init = function () {
 
 		loginaction: function (req, res) {
 
-			res.redirect('/home');
+			res.redirect('/mobile');
 		},
 
 		logout: function (req,res) {

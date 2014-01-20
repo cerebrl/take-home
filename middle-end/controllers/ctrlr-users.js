@@ -1,8 +1,5 @@
 /**
- * UsersController
- *
- * @module		:: Controller
- * @description	:: Contains logic for handling requests.
+ * Users Controller
  */
 
 var crypto = require('crypto'),

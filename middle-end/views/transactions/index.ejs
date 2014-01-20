@@ -1,0 +1,168 @@
+<% include ../partials/head %>
+	<% include ../partials/header %>
+
+		<script type="text/javascript">
+
+			angular.module('TH').factory('sectionData', function () {
+
+				'use strict';
+
+				var data = {
+						type: 'transactions'
+					};
+
+				<% if (transactions) { %>
+
+					data.collection = <%- transactions %>;
+
+				<% } else { %>
+
+					data.collection = [];
+				<% } %>
+
+				return data;
+			});
+		</script>
+
+		<div data-ng-view data-ng-class="animate.direction"
+			 id="js_mainPanel" class="viewPanel rowMain"></div>
+
+		<script id="list" type="template/angular">
+			<div class="twelveColumns">
+
+				<div class="topbar row">
+					<div class="mobile_twoColumns left">
+						<button id="js_menuButton" class="button default">Menu</button>
+					</div>
+					<div class="mobile_twoColumns center">
+						<img class="logo" src="/img/logo_paypal.png">
+					</div>
+					<div class="mobile_twoColumns right"></div>
+				</div>
+
+				<h2>Transaction History</h2>
+
+				<table class="actionTable">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Recepient</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="item in transactions"
+							data-link-row data-ng-click="setDirection('forward')">
+							<td data-ng-bind="item.date | date:'MM/dd/yy'"></td>
+							<td data-ng-bind="item.recepient"></td>
+							<td class="right">
+								$<a href="#/{{item._id}}" data-ng-bind="item.amount"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</script>
+
+		<script id="view" type="template/angular">
+			<div class="twelveColumns">
+
+				<div class="topbar row">
+					<div class="mobile_twoColumns left">
+						<a href="#" class="button default"
+						   data-ng-click="setDirection('backward')">Back</a>
+					</div>
+					<div class="mobile_twoColumns center">
+						<img class="logo" src="/img/logo_paypal.png">
+					</div>
+					<div class="mobile_twoColumns right"></div>
+				</div>
+
+				<h2>View Transaction</h2>
+
+				<label for="recepient">Recepient:</label>
+				<p data-ng-bind="trans.recepient"></p>
+
+				<label for="email">email:</label>
+				<p data-ng-bind="trans.email"></p>
+
+				<label for="amount">Amount:</label>
+				<p>
+					<span data-ng-bind="trans.amount"></span>
+					<span data-ng-bind="trans.currency"></span>
+				</p>
+
+				<label for="message">Message (optional):</label>
+				<p data-ng-bind="trans.message"></p>
+			</div>
+		</script>
+
+		<script id="new" type="template/angular">
+			<div class="twelveColumns">
+
+				<div class="topbar row">
+					<div class="mobile_twoColumns left">
+						<a href="#" class="button default"
+						   data-ng-click="setDirection('backward')">Back</a>
+					</div>
+					<div class="mobile_twoColumns center">
+						<img class="logo" src="/img/logo_paypal.png">
+					</div>
+					<div class="mobile_twoColumns right"></div>
+				</div>
+
+				<h2>New Transaction</h2>
+
+				<form name="saveTransactionForm">
+
+					<label for="recepient">Recepient:</label>
+					<input id="recepient" type="text" name="Recepient"
+						   data-ng-model="trans.recepient" placeholder="John Doe" required>
+
+					<label for="email">email:</label>
+					<input id="email" type="email" name="Email" data-ng-model="trans.email"
+						   placeholder="john@mail.com">
+
+					<label for="amount">Amount:</label>
+					<div class="inputPrefix inputPrefixMini">
+						<span class="addOn" data-ng-bind="currencySymbol">
+							$
+						</span><input
+							id="amount" type="text" name="Amount_Field" placeholder="0.00"
+							   data-ng-model="trans.amount" required>
+
+						<select id="currency" data-ng-model="trans.currency"
+								data-ng-change="changeSymbol()" name="currency">
+							<option value="USD" selected>USD</option>
+							<option value="EUR">EUR</option>
+							<option value="JPY">JPY</option>
+						</select>
+					</div>
+
+					<label for="message">Message (optional):</label>
+					<textarea id="message" name="Message_Field"
+							  data-ng-model="trans.message" placeholder=""></textarea>
+
+					<div class="alertBox alert ng-cloak" data-ng-show="formMessage">
+						<p data-ng-bind="formMessage"></p>
+					</div>
+
+					<div class="row actionRow">
+						<div class="mobile_threeColumns center">
+							<button class="button cancel buttonLarge" type="reset"
+									data-ng-click="clearForm()">
+								Cancel
+							</button>
+						</div>
+						<div class="mobile_threeColumns center">
+							<button class="button success buttonLarge" type="submit"
+									data-ng-click="saveTrans()">
+								Send Money
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</script>
+
+<% include ../partials/footer %>

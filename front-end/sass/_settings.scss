@@ -23,9 +23,10 @@
 	$white: #fff !default;
 
 	// Accent colors
-	$blue: #0065a0 !default;
+	$blue: #00457c !default;
 	$lightBlue: #559fce !default;
-	$green: #adc497 !default;
+	$green: #60922F !default;
+	$lightGreen: #adc497 !default;
 	$red: #9d261d !default;
 	$orange: #E38219 !default;
 	$yellow: #ffc40d !default;
@@ -131,7 +132,7 @@
 
 	// color settings
 		$mainColor: $whiteDark !default;
-		$mainBorderColor: darken(($mainColor), 10%);
+		$mainBorderColor: darken(($mainColor), 20%);
 		$lightColor: $whiteDark !default;
 		$primaryColor: $blue !default;
 		$secondaryColor: $lightBlue !default;

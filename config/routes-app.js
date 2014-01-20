@@ -7,6 +7,8 @@
 var fs = require('fs'),
 	ctrlrPath = '../middle-end/controllers/',
 	auth = require(ctrlrPath + 'ctrlr-auth'),
+	send = require(ctrlrPath + 'ctrlr-send'),
+	transactions = require(ctrlrPath + 'ctrlr-trans'),
 	users = require(ctrlrPath + 'ctrlr-users');
 
 module.exports = function (app, passport) {
@@ -60,18 +62,20 @@ module.exports = function (app, passport) {
 
 
 	/******************
-	 * HOME ROUTES
+	 * MAIN ROUTES
 	 */
 
-	app.get('/home', auth.home);
+	app.get('/mobile', auth.home);
+	app.get('/mobile/send-money', send.index);
+	app.get('/mobile/transactions', transactions.index);
 
 
 	/******************
 	 * USER
 	 */
 
-	app.get('/admin/users', users.index);
-	app.get('/admin/users/:id', users.user);
-	app.post('/admin/users', users.create);
-	app.get('/admin/users/:id/delete', users.destroy);
+	app.get('/mobile/users', users.index);
+	app.get('/mobile/users/:id', users.user);
+	app.post('/mobile/users', users.create);
+	app.get('/mobile/users/:id/delete', users.destroy);
 };

@@ -11,19 +11,26 @@ h1, h2 {
 }
 .rowMain {
 	padding: $baseLineHeight;
-	background: $bodyBackground;
 	position: relative;
 	left: 0;
 	margin: 0;
 	min-height: 100%;
-	@include single-transition(left, 0.25s);
-	outline: 3px solid rgba(0, 0, 0, 0.5);
 }
-.menuOpen {
-	left: 60%;
+.alertBox {
+	margin: $baseLineHeight 0 0;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+td > a {
+	text-decoration: none;
+	color: inherit;
 }
 
 // Nav Drawer Styles
+.menuOpen {
+	left: 60%;
+}
 .navMenu {
 	position: fixed;
 	width: 100%;
@@ -42,6 +49,11 @@ h1, h2 {
 	font-weight: 700;
 	display: block;
 	line-height: 1.5em;
+
+	&:hover {
+		background: rgba(0, 0, 0, 0.2);
+		@include single-transition(background, 0.25s);
+	}
 }
 
 // Topbar Styles
@@ -61,4 +73,101 @@ h1, h2 {
 	font-size: 5em;
 	font-weight: 300;
 	line-height: 1em;
+}
+
+// Send Money Styles
+.inputPrefixMini {
+
+	.addOn {
+		width: 10%;
+	}
+	input {
+		width: 60%;
+		margin: 0;
+	}
+	select {
+		display: inline-block;
+		width: 28.5%;
+		margin: 0;
+	}
+}
+.actionRow {
+	padding-top: $baseLineHeight * 2;
+}
+.cancel {
+	background: none;
+	border: none;
+	color: $gray;
+}
+
+// Angular Specific Stylings
+input.ng-pristine, textarea.ng-pristine {
+	background: $inputBgColor !important;
+	border-color: $inputBorderColor !important;
+}
+select.ng-pristine {
+	border-color: $inputBorderColor !important;
+}
+
+// Angular Animations
+.forward, .viewPanel {
+	position: fixed;
+	background: $bodyBackground;
+	left: 0;
+	top: 0;
+	padding-top: $baseLineHeight;
+	bottom: 0;
+	right: 0;
+	min-width: 100%;
+	outline: 1px solid $grayLight;
+}
+.viewPanel.menuOpen,
+.viewPanel.menuClose{
+	transition: 0.2s;
+}
+.viewPanel.menuClose {
+	left: 0%;
+}
+.viewPanel.menuOpen {
+	left: 60%;
+}
+.forward.ng-enter,
+.forward.ng-leave {
+	transition: 0.2s;
+}
+.forward.ng-enter {
+	left: 100%;
+	right: -100%;
+}
+.forward.ng-enter.ng-enter-active {
+	left: 0;
+	right: 0;
+}
+.forward.ng-leave {
+	left: 0;
+	right: 0;
+}
+.forward.ng-leave.ng-leave-active {
+	left: -100%;
+	right: 100%;
+}
+.backward.ng-enter,
+.backward.ng-leave {
+	transition: 0.2s;
+}
+.backward.ng-enter {
+	left: -100%;
+	right: 100%;
+}
+.backward.ng-enter.ng-enter-active {
+	left: 0;
+	right: 0;
+}
+.backward.ng-leave {
+	left: 0;
+	right: 0;
+}
+.backward.ng-leave.ng-leave-active {
+	left: 100%;
+	right: -100%;
 }

@@ -51,6 +51,14 @@ module.exports = function(grunt) {
 			main: {
 				src: 'front-end/js/*.js',
 				dest: '_public/dev/js/main.js'
+			},
+			send: {
+				src: 'front-end/js/send/*.js',
+				dest: '_public/dev/js/send.js'
+			},
+			trans: {
+				src: 'front-end/js/transactions/*.js',
+				dest: '_public/dev/js/trans.js'
 			}
 		},
 		watch: {
@@ -93,6 +101,13 @@ module.exports = function(grunt) {
 				dest: '_public/dist/js', // Destination path prefix.
 				ext: '.js',             // Dest filepaths will have this extension.
 				flatten: false          // Remove directory structure in destination
+			},
+			requirejs: {
+				expand: true,           // Enable dynamic expansion.
+				cwd: 'front-end/vendor-bower/requirejs',   // Src matches are relative to this path.
+				src: ['require.js'],       // Actual pattern(s) to match.
+				dest: 'front-end/vendor-bower/requirejs', // Destination path prefix.
+				ext: '.min.js'             // Dest filepaths will have this extension.
 			}
 		},
 		compass: {
@@ -194,6 +209,7 @@ module.exports = function(grunt) {
 	// Tasks for grunt dev (rarely used, but available).
 	grunt.registerTask('dev', [
 			'jshint',
+			'uglify:requirejs',
 			'clean:dev',
 			'concat',
 			'copy:dev',
@@ -209,7 +225,7 @@ module.exports = function(grunt) {
 			'compass:dev',
 			'clean:dist',
 			'copy:dist',
-			'uglify',
+			'uglify:prod',
 			'compass:dist',
 			'nodemon:prod'
 		]);
