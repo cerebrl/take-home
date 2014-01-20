@@ -31,6 +31,9 @@ td {
 	color: $grayDark;
 	padding: ($baseLineHeight / 2) $baseLineHeight;
 }
+.actionTable td:hover {
+	cursor: pointer;
+}
 .numbersTable {
 
 	td:first-child {
