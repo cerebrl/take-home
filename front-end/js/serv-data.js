@@ -23,6 +23,8 @@ angular.module('TH').
 
 				query: function query(options) {
 
+					console.log(options.previous);
+
 					// Create "api" url to differentiate from regular "web" requests
 					var url = '/api/' + options.type,
 						deferred = $q.defer(), // Deferred object for caching
@@ -40,8 +42,17 @@ angular.module('TH').
 						}
 					}
 
+					if (options.next) {
+						url = url + '?next=' + options.next;
+					}
+
+					if (options.previous) {
+						url = url + '?previous=' + options.previous;
+					}
+
 					// Check to see if cache is available, if not get data
-					if (!dataCache[options.type] || options.item) {
+					if (options.next || options.previous ||
+						!dataCache[options.type] || options.item) {
 
 						console.log('get data');
 
@@ -51,11 +62,11 @@ angular.module('TH').
 							if (options.item) {
 
 								dataCache[options.type][options.item] =
-										response.type;
+										response.data;
 
 							} else {
 
-								dataCache[options.type].data = response.collection;
+								dataCache[options.type].data = response.data;
 							}
 
 							return response;
@@ -73,7 +84,7 @@ angular.module('TH').
 									// Mimics the successful return of a promise,
 									// but it's returning cache
 									deferred.resolve({
-										data: dataCache[options.type][options.item].collection
+										data: dataCache[options.type][options.item]
 									});
 
 								} else {
@@ -81,7 +92,7 @@ angular.module('TH').
 									// Mimics the successful return of a promise,
 									// but it's returning cache
 									deferred.resolve({
-										data: dataCache[options.type].collection
+										data: dataCache[options.type]
 									});
 								}
 							});

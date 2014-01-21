@@ -58,6 +58,14 @@ td > a {
 
 // Topbar Styles
 .topbar {
+	height: 4em;
+	padding: ($baseLineHeight / 2) $baseLineHeight;
+	border-bottom: 1px solid $grayLight;
+	background: $bodyBackground;
+	position: fixed;
+	z-index: 1;
+	right: 0;
+	left: 0;
 
 	.button {
 		margin: 0;
@@ -100,6 +108,16 @@ td > a {
 	color: $gray;
 }
 
+.content {
+	overflow-y: auto;
+	position: absolute;
+	top: 4em;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	padding: 1.25em;
+}
+
 // Angular Specific Stylings
 input.ng-pristine, textarea.ng-pristine {
 	background: $inputBgColor !important;
@@ -115,7 +133,6 @@ select.ng-pristine {
 	background: $bodyBackground;
 	left: 0;
 	top: 0;
-	padding-top: $baseLineHeight;
 	bottom: 0;
 	right: 0;
 	min-width: 100%;

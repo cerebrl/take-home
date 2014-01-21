@@ -23,6 +23,91 @@ angular.module('TH').
 
 ;// End of file
 
+angular.module('TH').
+
+	directive('lazyLoad', [
+
+		'$rootScope',
+
+		function ($rootScope) {
+
+			'use strict';
+
+			return {
+
+				link: function (scope, element, attrs) {
+
+					var scrollableEl = document.getElementById('js_scrollable'),
+						itemMax = false;
+
+					function isElementInViewport (el) {
+
+						var rect = el.getBoundingClientRect();
+
+						return (
+							rect.top >= 0 &&
+							rect.left >= 0 &&
+							rect.bottom <= (window.innerHeight ||
+												document.documentElement.clientHeight) &&
+							rect.right <= (window.innerWidth ||
+											   document.documentElement.clientWidth)
+						);
+					}
+
+					function checkLastElVisibility (el) {
+
+						if (isElementInViewport(el)) {
+							$rootScope.$broadcast('loadMorePost');
+						}
+					}
+
+					$rootScope.$on('itemMax', function () {
+
+						var toTop = $('#js_scrollable').scrollTop();
+
+						$('#js_scrollable').scrollTop(toTop - 800);
+
+						itemMax = true;
+					});
+
+					angular.element(element).ready(function () {
+
+						var len = element[0].getElementsByTagName('tr').length,
+							lastEl = element[0].getElementsByTagName('tr')[len - 1];
+
+						checkLastElVisibility(lastEl);
+					});
+
+					angular.element(window).on('resize', function () {
+
+						var len = element[0].getElementsByTagName('tr').length,
+							lastEl = element[0].getElementsByTagName('tr')[len - 1];
+
+						checkLastElVisibility(lastEl);
+					});
+
+					angular.element(scrollableEl).on('scroll', function () {
+
+						var len = element[0].getElementsByTagName('tr').length,
+							lastEl = element[0].getElementsByTagName('tr')[len - 1],
+							firstEl = element[0].getElementsByTagName('tr')[0];
+
+						if (itemMax && $('#js_scrollable').scrollTop() === 0) {
+
+							$rootScope.$broadcast('loadMorePre');
+
+						} else {
+
+							checkLastElVisibility(lastEl);
+						}
+					});
+				}
+			};
+		}
+	]);
+
+;// End of file
+
 (function () {
 
 	'use strict';
@@ -183,6 +268,8 @@ angular.module('TH').
 
 				query: function query(options) {
 
+					console.log(options.previous);
+
 					// Create "api" url to differentiate from regular "web" requests
 					var url = '/api/' + options.type,
 						deferred = $q.defer(), // Deferred object for caching
@@ -200,8 +287,17 @@ angular.module('TH').
 						}
 					}
 
+					if (options.next) {
+						url = url + '?next=' + options.next;
+					}
+
+					if (options.previous) {
+						url = url + '?previous=' + options.previous;
+					}
+
 					// Check to see if cache is available, if not get data
-					if (!dataCache[options.type] || options.item) {
+					if (options.next || options.previous ||
+						!dataCache[options.type] || options.item) {
 
 						console.log('get data');
 
@@ -211,11 +307,11 @@ angular.module('TH').
 							if (options.item) {
 
 								dataCache[options.type][options.item] =
-										response.type;
+										response.data;
 
 							} else {
 
-								dataCache[options.type].data = response.collection;
+								dataCache[options.type].data = response.data;
 							}
 
 							return response;
@@ -233,7 +329,7 @@ angular.module('TH').
 									// Mimics the successful return of a promise,
 									// but it's returning cache
 									deferred.resolve({
-										data: dataCache[options.type][options.item].collection
+										data: dataCache[options.type][options.item]
 									});
 
 								} else {
@@ -241,7 +337,7 @@ angular.module('TH').
 									// Mimics the successful return of a promise,
 									// but it's returning cache
 									deferred.resolve({
-										data: dataCache[options.type].collection
+										data: dataCache[options.type]
 									});
 								}
 							});

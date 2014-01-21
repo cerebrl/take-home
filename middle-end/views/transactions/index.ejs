@@ -8,12 +8,15 @@
 				'use strict';
 
 				var data = {
-						type: 'transactions'
+						type: '<%= collection.type %>',
+						next: <%= collection.next %>,
+						limit: <%= collection.limit %>,
+						total: <%= collection.total %>
 					};
 
-				<% if (transactions) { %>
+				<% if (collection.data) { %>
 
-					data.collection = <%- transactions %>;
+					data.collection = <%- collection.data %>;
 
 				<% } else { %>
 
@@ -25,21 +28,21 @@
 		</script>
 
 		<div data-ng-view data-ng-class="animate.direction"
-			 id="js_mainPanel" class="viewPanel rowMain"></div>
+			 id="js_mainPanel" class="viewPanel"></div>
 
 		<script id="list" type="template/angular">
-			<div class="twelveColumns">
 
-				<div class="topbar row">
-					<div class="mobile_twoColumns left">
-						<button id="js_menuButton" class="button default">Menu</button>
-					</div>
-					<div class="mobile_twoColumns center">
-						<img class="logo" src="/img/logo_paypal.png">
-					</div>
-					<div class="mobile_twoColumns right"></div>
+			<div class="topbar row">
+				<div class="mobile_twoColumns left">
+					<button id="js_menuButton" class="button default">Menu</button>
 				</div>
+				<div class="mobile_twoColumns center">
+					<img class="logo" src="/img/logo_paypal.png">
+				</div>
+				<div class="mobile_twoColumns right"></div>
+			</div>
 
+			<main id="js_scrollable" class="content">
 				<h2>Transaction History</h2>
 
 				<table class="actionTable">
@@ -50,22 +53,21 @@
 							<th>Amount</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody data-lazy-load>
 						<tr data-ng-repeat="item in transactions"
-							data-link-row data-ng-click="setDirection('forward')">
+							 data-ng-click="setDirection('forward')">
 							<td data-ng-bind="item.date | date:'MM/dd/yy'"></td>
-							<td data-ng-bind="item.recepient"></td>
+							<td data-ng-bind="item.recipient"></td>
 							<td class="right">
 								$<a href="#/{{item._id}}" data-ng-bind="item.amount"></a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
+			</main>
 		</script>
 
 		<script id="view" type="template/angular">
-			<div class="twelveColumns">
 
 				<div class="topbar row">
 					<div class="mobile_twoColumns left">
@@ -78,46 +80,47 @@
 					<div class="mobile_twoColumns right"></div>
 				</div>
 
-				<h2>View Transaction</h2>
+				<main class="content">
+					<h2>View Transaction</h2>
 
-				<label for="recepient">Recepient:</label>
-				<p data-ng-bind="trans.recepient"></p>
+					<label for="recipient">Recipient:</label>
+					<p data-ng-bind="trans.recipient"></p>
 
-				<label for="email">email:</label>
-				<p data-ng-bind="trans.email"></p>
+					<label for="email">email:</label>
+					<p data-ng-bind="trans.email"></p>
 
-				<label for="amount">Amount:</label>
-				<p>
-					<span data-ng-bind="trans.amount"></span>
-					<span data-ng-bind="trans.currency"></span>
-				</p>
+					<label for="amount">Amount:</label>
+					<p>
+						<span data-ng-bind="trans.amount"></span>
+						<span data-ng-bind="trans.currency"></span>
+					</p>
 
-				<label for="message">Message (optional):</label>
-				<p data-ng-bind="trans.message"></p>
-			</div>
+					<label for="message">Message (optional):</label>
+					<p data-ng-bind="trans.message"></p>
+				</main>
 		</script>
 
 		<script id="new" type="template/angular">
-			<div class="twelveColumns">
 
-				<div class="topbar row">
-					<div class="mobile_twoColumns left">
-						<a href="#" class="button default"
-						   data-ng-click="setDirection('backward')">Back</a>
-					</div>
-					<div class="mobile_twoColumns center">
-						<img class="logo" src="/img/logo_paypal.png">
-					</div>
-					<div class="mobile_twoColumns right"></div>
+			<div class="topbar row">
+				<div class="mobile_twoColumns left">
+					<a href="#" class="button default"
+					   data-ng-click="setDirection('backward')">Back</a>
 				</div>
+				<div class="mobile_twoColumns center">
+					<img class="logo" src="/img/logo_paypal.png">
+				</div>
+				<div class="mobile_twoColumns right"></div>
+			</div>
 
+			<main class="content">
 				<h2>New Transaction</h2>
 
 				<form name="saveTransactionForm">
 
-					<label for="recepient">Recepient:</label>
-					<input id="recepient" type="text" name="Recepient"
-						   data-ng-model="trans.recepient" placeholder="John Doe" required>
+					<label for="recipient">Recipient:</label>
+					<input id="recipient" type="text" name="Recepient"
+						   data-ng-model="trans.recipient" placeholder="John Doe" required>
 
 					<label for="email">email:</label>
 					<input id="email" type="email" name="Email" data-ng-model="trans.email"
@@ -162,7 +165,7 @@
 						</div>
 					</div>
 				</form>
-			</div>
+			</main>
 		</script>
 
 <% include ../partials/footer %>

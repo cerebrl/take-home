@@ -17,8 +17,9 @@ var init = function () {
 				type: Date,
 				default: new Date()
 			},
-			recepient: String,
+			recipient: String,
 			email: String,
+			type: String,
 			amount: String,
 			currency: String,
 			message: String,

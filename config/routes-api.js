@@ -12,6 +12,7 @@ module.exports = function (app) {
 	app.post('/api/send', send.create);
 
 	// Transactions
+	app.get('/api/transactions', transactions.collection);
 	app.get('/api/transactions/:id', transactions.instance);
 	app.post('/api/transactions', transactions.create);
 
