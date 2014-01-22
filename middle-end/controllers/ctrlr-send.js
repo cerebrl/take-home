@@ -19,7 +19,7 @@ var init = function () {
 
 			setTimeout(function () {
 				res.json(200);
-			}, 10000);
+			}, 1000);
 		}
 	};
 };

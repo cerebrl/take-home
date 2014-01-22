@@ -118,11 +118,26 @@ td > a {
 		margin: 0;
 	}
 }
-.spinner {
+.icon-spinner {
 	position: absolute;
-	z-index: 90;
-	margin-top: 45%;
-	margin-left: 45%;
+	z-index: 99;
+	top: 45%;
+	left: 40%;
+	font-size:4em;
+	height: 1em;
+	line-height: 1;
+	margin: .5em;
+	-webkit-animation: anim-rotate 1s infinite linear;
+	color: $grayLighter;
+	text-shadow: 0 0 .25em rgba(255,255,255, .3);
+}
+@-webkit-keyframes anim-rotate {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
 }
 .actionRow {
 	padding-top: $baseLineHeight * 2;

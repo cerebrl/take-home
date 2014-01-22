@@ -9,6 +9,7 @@ angular.module('TH').controller('ctrlrSendMoney', [
 		$scope.send = {};
 		$scope.send.currency = 'USD';
 		$scope.currencySymbol = '$';
+		$scope.showSpinner = false;
 
 		$scope.changeSymbol = function () {
 			switch ($scope.currency) {
@@ -33,6 +34,7 @@ angular.module('TH').controller('ctrlrSendMoney', [
 			if ($scope.sendMoneyForm.$valid) {
 
 				$scope.sending = 'active';
+				$scope.showSpinner = true;
 
 				dataServices.create(url, $scope.send).
 					success(function () {
