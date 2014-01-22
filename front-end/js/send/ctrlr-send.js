@@ -34,17 +34,24 @@ angular.module('TH').controller('ctrlrSendMoney', [
 
 			if ($scope.sendMoneyForm.$valid) {
 
-				$scope.sending = 'active';
-				$scope.showSpinner = true;
+				if ($scope.send.amount > 0) {
 
-				dataServices.create(url, $scope.send).
-					success(function () {
+					$scope.sending = 'active';
+					$scope.showSpinner = true;
 
-						$scope.sending = false;
+					dataServices.create(url, $scope.send).
+						success(function () {
 
-						$rootScope.animate.direction = 'forward';
-						window.location.hash = "#/sent-successfully";
-					});
+							$scope.sending = false;
+
+							$rootScope.animate.direction = 'forward';
+							window.location.hash = "#/sent-successfully";
+						});
+
+				} else {
+
+					$scope.formMessage = "Error: Amount cannot be a negative number.";
+				}
 
 			} else {
 
