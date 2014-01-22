@@ -33,17 +33,16 @@
 		<script id="list" type="template/angular">
 
 			<div class="topbar row">
-				<div class="mobile_twoColumns left">
+				<div class="mobile_oneColumns left">
 					<button id="js_menuButton" class="button default">Menu</button>
 				</div>
-				<div class="mobile_twoColumns center">
-					<img class="logo" src="/img/logo_paypal.png">
+				<div class="mobile_fourColumns center">
+					<h1 class="pageTitle">Transactions</h1>
 				</div>
-				<div class="mobile_twoColumns right"></div>
+				<div class="mobile_oneColumns right"></div>
 			</div>
 
 			<main id="js_scrollable" class="content">
-				<h2>Transaction History</h2>
 
 				<table class="actionTable">
 					<thead>
@@ -55,7 +54,7 @@
 					</thead>
 					<tbody data-lazy-load>
 						<tr data-ng-repeat="item in transactions"
-							 data-ng-click="setDirection('forward')">
+							data-link-row data-ng-click="setDirection('forward')">
 							<td data-ng-bind="item.date | date:'MM/dd/yy'"></td>
 							<td data-ng-bind="item.recipient"></td>
 							<td class="right">

@@ -1,29 +1,33 @@
 angular.module('TH').
 	controller('ctrlrTransactions', [
-		'$scope', 'dataServices',
-		function ($scope, dataServices) {
+		'$scope', '$rootScope', 'dataServices',
+		function ($scope, $rootScope, dataServices) {
 
 			'use strict';
 
 			var itemParams = {},
-				itemMax = 100;
+				itemMax = 60;
+
+			$rootScope.$on('$routeChangeStart', function () {
+
+				$scope.$emit('setScrollPosition');
+			});
+
+			$scope.$emit('scrollToPosition');
 
 			dataServices.query({type: 'transactions'}).then(function (response) {
 
 				itemParams = {
 					type: response.data.type,
 					next: response.data.next,
-					limit: response.data.limit,
-					total: response.data.total
+					limit: response.data.limit
 				};
 				$scope.transactions = response.data.collection;
 			});
 
 			$scope.$on('loadMorePost', function () {
 
-					console.log(itemParams.next);
-
-				if ((itemParams.next - itemParams.limit) > -20) {
+				if ((itemParams.next - itemParams.limit) > -10) {
 
 					dataServices.query({
 
@@ -32,59 +36,10 @@ angular.module('TH').
 
 						}).then(function (response) {
 
-							if ($scope.transactions.length >= itemMax) {
-
-								$scope.$emit('itemMax');
-								$scope.transactions = $scope.transactions.slice(19);
-							}
-
 							itemParams.next = response.data.next;
 
 							$scope.transactions = $scope.transactions.
 														concat(response.data.data);
-						});
-				}
-			});
-
-			$scope.$on('loadMorePre', function () {
-
-				console.log(itemParams.previous, itemParams.total);
-
-				var previous = itemParams.previous || itemParams.next + $scope.transactions.length;
-
-				if (previous < itemParams.total) {
-
-					dataServices.query({
-
-							type: 'transactions',
-							previous: previous
-
-						}).then(function (response) {
-
-							var newArray = [];
-
-							console.log('load more pre');
-
-							if (response.data.data.length !== 0) {
-
-								if ($scope.transactions.length >= itemMax) {
-
-									$scope.$emit('itemMax');
-									$scope.transactions = $scope.transactions.slice(80);
-								}
-
-								itemParams.previous = response.data.previous;
-
-								newArray = [].concat(response.data.data, $scope.transactions);
-
-								console.log(newArray);
-
-								$scope.transactions = newArray;
-
-								// This is not an "Angular way" to do things,
-								// but holy smokes is this lazy loading hard!
-								$('#js_scrollable').scrollTop(600);
-							}
 						});
 				}
 			});
@@ -144,8 +99,6 @@ angular.module('TH').
 					dataServices.create(url, $scope.trans).
 						success(function () {
 
-							console.log('Transaction has been saved.');
-
 							$scope.sending = false;
 						});
 
@@ -156,8 +109,6 @@ angular.module('TH').
 			};
 
 			$scope.clearForm = function () {
-
-				console.log('clear form');
 
 				$scope.send = {};
 				$scope.sendMoneyForm.$setPristine();

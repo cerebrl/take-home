@@ -35,8 +35,6 @@ angular.module('TH').controller('ctrlrSendMoney', [
 				dataServices.create(url, $scope.send).
 					success(function () {
 
-						console.log('Money has been sent.');
-
 						$scope.sending = false;
 
 						$rootScope.animate.direction = 'forward';
@@ -50,8 +48,6 @@ angular.module('TH').controller('ctrlrSendMoney', [
 		};
 
 		$scope.clearForm = function () {
-
-			console.log('clear form');
 
 			$scope.send = {};
 			$scope.sendMoneyForm.$setPristine();

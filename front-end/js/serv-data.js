@@ -23,8 +23,6 @@ angular.module('TH').
 
 				query: function query(options) {
 
-					console.log(options.previous);
-
 					// Create "api" url to differentiate from regular "web" requests
 					var url = '/api/' + options.type,
 						deferred = $q.defer(), // Deferred object for caching
@@ -54,7 +52,6 @@ angular.module('TH').
 					if (options.next || options.previous ||
 						!dataCache[options.type] || options.item) {
 
-						console.log('get data');
 
 						return $http.get(url).then(function (response) {
 
@@ -62,18 +59,23 @@ angular.module('TH').
 							if (options.item) {
 
 								dataCache[options.type][options.item] =
-										response.data;
+										response.collection;
+
+							} else if (options.next) {
+
+
+								dataCache[options.type].collection =
+										dataCache[options.type].collection.
+												concat(response.data.data);
 
 							} else {
 
-								dataCache[options.type].data = response.data;
+								dataCache[options.type].collection = response.data;
 							}
 
 							return response;
 						});
 					} else { // Use cache!
-
-						console.log('use cache');
 
 						setTimeout(function () {
 

@@ -18,24 +18,21 @@
 		</script>
 
 		<div data-ng-view data-ng-class="animate.direction"
-			 id="js_mainPanel" class="viewPanel rowMain"></div>
+			 id="js_mainPanel" class="viewPanel"></div>
 
 		<script id="sendForm" type="template/angular">
-			<div class="twelveColumns">
 
 				<div class="topbar row">
-					<div class="mobile_twoColumns left">
+					<div class="mobile_oneColumns left">
 						<button id="js_menuButton" class="button default">Menu</button>
 					</div>
-					<div class="mobile_twoColumns center">
-						<img class="logo" src="/img/logo_paypal.png">
+					<div class="mobile_fourColumns center">
+						<h1 class="pageTitle">Send Money</h1>
 					</div>
-					<div class="mobile_twoColumns right"></div>
+					<div class="mobile_oneColumns right"></div>
 				</div>
 
-				<h2>Send Money</h2>
-
-				<form name="sendMoneyForm">
+				<form name="sendMoneyForm" class="content">
 
 					<label for="sendTo">Send to:</label>
 					<input id="sendTo" type="email" name="Send_To" data-ng-model="send.to"
@@ -91,13 +88,14 @@
 							</button>
 						</div>
 					</div>
+					<div id="loadingGraphic" class="spinner">
+						<img src="/img/spinner.png">
+					</div>
 					<div id="modalBackground" data-ng-class="sending"></div>
 				</form>
-			</div>
 		</script>
 
 		<script id="sentSuccess" type="template/angular">
-			<div class="twelveColumns">
 
 				<div class="topbar row">
 					<div class="mobile_twoColumns left">
@@ -110,9 +108,10 @@
 					<div class="mobile_twoColumns right"></div>
 				</div>
 
-				<h2>Success!</h2>
-				<h3>Your money has been successfully sent.</h3>
-			</div>
+				<div class="content">
+					<h2>Success!</h2>
+					<h3>Your money has been successfully sent.</h3>
+				</div>
 		</script>
 
 <% include ../partials/footer %>

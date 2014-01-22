@@ -13,7 +13,10 @@ angular.module('TH').
 				link: function (scope, element, attrs) {
 
 					var scrollableEl = document.getElementById('js_scrollable'),
-						itemMax = false;
+						itemMax = false,
+						scrollEl = $('#js_scrollable').scrollTop(),
+						scrollPostion,
+						allowScroll = true;
 
 					function isElementInViewport (el) {
 
@@ -31,18 +34,24 @@ angular.module('TH').
 
 					function checkLastElVisibility (el) {
 
-						if (isElementInViewport(el)) {
-							$rootScope.$broadcast('loadMorePost');
-						}
+							if (isElementInViewport(el)) {
+
+								$rootScope.$broadcast('loadMorePost');
+							}
 					}
 
-					$rootScope.$on('itemMax', function () {
+					$rootScope.$on('setScrollPosition', function () {
 
-						var toTop = $('#js_scrollable').scrollTop();
+						scrollPostion = $('#js_scrollable').scrollTop();
 
-						$('#js_scrollable').scrollTop(toTop - 800);
+					});
 
-						itemMax = true;
+					$rootScope.$on('scrollToPosition', function () {
+
+
+						setTimeout(function () {
+							$('#js_scrollable').scrollTop(scrollPostion);
+						}, 750);
 					});
 
 					angular.element(element).ready(function () {
@@ -63,17 +72,37 @@ angular.module('TH').
 
 					angular.element(scrollableEl).on('scroll', function () {
 
-						var len = element[0].getElementsByTagName('tr').length,
-							lastEl = element[0].getElementsByTagName('tr')[len - 1],
-							firstEl = element[0].getElementsByTagName('tr')[0];
+						if (allowScroll) {
 
-						if (itemMax && $('#js_scrollable').scrollTop() === 0) {
+							var len, lastEl, firstEl;
 
-							$rootScope.$broadcast('loadMorePre');
+							allowScroll = false;
 
-						} else {
+							setTimeout(function () {
 
-							checkLastElVisibility(lastEl);
+								allowScroll = true;
+							}, 100);
+
+							if (scrollEl < $('#js_scrollable').scrollTop()) {
+
+								scrollEl = $('#js_scrollable').scrollTop();
+
+								len = element[0].getElementsByTagName('tr').length;
+								lastEl = element[0].getElementsByTagName('tr')[len - 16];
+								firstEl = element[0].getElementsByTagName('tr')[0];
+
+								checkLastElVisibility(lastEl);
+
+							} else {
+
+								allowScroll = false;
+
+								setTimeout(function () {
+
+									allowScroll = true;
+								}, 500);
+
+							}
 						}
 					});
 				}

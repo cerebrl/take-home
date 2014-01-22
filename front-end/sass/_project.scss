@@ -16,6 +16,10 @@ h1, h2 {
 	margin: 0;
 	min-height: 100%;
 }
+.offscreen {
+	position: fixed;
+	top: -50em;
+}
 .alertBox {
 	margin: $baseLineHeight 0 0;
 }
@@ -50,22 +54,32 @@ td > a {
 	display: block;
 	line-height: 1.5em;
 
+	i {
+		display: inline-block;
+		font-size: 1.2em;
+		width: 2em;
+		text-align: center;
+	}
+
 	&:hover {
 		background: rgba(0, 0, 0, 0.2);
-		@include single-transition(background, 0.25s);
+		@include single-transition(background, 0.1s);
 	}
 }
 
 // Topbar Styles
 .topbar {
 	height: 4em;
-	padding: ($baseLineHeight / 2) $baseLineHeight;
+	padding: ($baseLineHeight / 2) 0;
+	margin: 0;
 	border-bottom: 1px solid $grayLight;
 	background: $bodyBackground;
 	position: fixed;
 	z-index: 1;
 	right: 0;
 	left: 0;
+	min-width: 100%;
+	@include translateZ(0);
 
 	.button {
 		margin: 0;
@@ -73,6 +87,11 @@ td > a {
 	.logo {
 		padding-top: $baseLineHeight / 2;
 	}
+}
+.pageTitle {
+	font-size: 1.5em;
+	font-weight: 700;
+	color: $blue;
 }
 
 // Home Styles
@@ -99,6 +118,12 @@ td > a {
 		margin: 0;
 	}
 }
+.spinner {
+	position: absolute;
+	z-index: 90;
+	margin-top: 45%;
+	margin-left: 45%;
+}
 .actionRow {
 	padding-top: $baseLineHeight * 2;
 }
@@ -115,7 +140,7 @@ td > a {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	padding: 1.25em;
+	padding: $baseLineHeight;
 }
 
 // Angular Specific Stylings
@@ -139,13 +164,17 @@ select.ng-pristine {
 	outline: 1px solid $grayLight;
 }
 .viewPanel.menuOpen,
-.viewPanel.menuClose{
-	transition: 0.2s;
+.viewPanel.menuClose,
+.viewPanel.menuOpen .topbar,
+.viewPanel.menuClose .topbar {
+	transition: 0.1s;
 }
-.viewPanel.menuClose {
+.viewPanel.menuClose,
+.viewPanel.menuClose .topbar {
 	left: 0%;
 }
-.viewPanel.menuOpen {
+.viewPanel.menuOpen,
+.viewPanel.menuOpen .topbar {
 	left: 60%;
 }
 .forward.ng-enter,

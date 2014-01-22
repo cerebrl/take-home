@@ -19,6 +19,8 @@ var init = function () {
 
 		login: function (req, res) {
 
+			var flashMessage = req.flash('error')[0] || null;
+
 			if (req.user) {
 
 				res.redirect('/mobile');
@@ -27,6 +29,7 @@ var init = function () {
 
 				res.render('login', {
 						title: 'Login | PayPal',
+						message: flashMessage,
 						user: null
 					});
 			}

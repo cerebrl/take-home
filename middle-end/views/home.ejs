@@ -1,39 +1,44 @@
 <% include partials/head %>
 	<% include partials/header %>
 
-		<div id="js_mainPanel" class="rowMain viewPanel">
-			<div class="twelveColumns">
+		<div id="js_mainPanel" class="viewPanel">
 
-				<div class="topbar row">
-					<div class="mobile_twoColumns left">
-						<button id="js_menuButton" class="button default">Menu</button>
-					</div>
-					<div class="mobile_twoColumns center">
-						<img class="logo" src="/img/logo_paypal.png">
-					</div>
-					<div class="mobile_twoColumns right"></div>
+			<div class="topbar row">
+				<div class="mobile_twoColumns left">
+					<button id="js_menuButton" class="button default">
+						<i class="icon-menu2"></i>
+						<span class="offscreen">Menu</span>
+					</button>
 				</div>
+				<div class="mobile_twoColumns center">
+					<img class="logo" src="/img/logo_paypal.png">
+				</div>
+				<div class="mobile_twoColumns right"></div>
+			</div>
 
+			<div class="content">
 				<h2>Hello, <%= user.firstName %>!</h2>
 
-				<label>Your Current Balance:</label>
+				<label>Your Available Balance:</label>
 				<div class="balance">
 					<%= balance %>
 				</div>
 
 				<hr>
 
-				<h3>What would you like to do?</h3>
+				<h3>What would you like to do today?</h3>
 
 				<div class="row">
 					<div class="mobile_threeColumns center">
-						<a href="/mobile/send-money" class="button secondary buttonLarge">
-							Send Money
+						<a href="/mobile/send-money"
+						   class="button secondary buttonLarge fullWidth">
+							Send Money to Someone
 						</a>
 					</div>
 					<div class="mobile_threeColumns center">
-						<a href="/mobile/transactions" class="button secondary buttonLarge">
-							Transactions
+						<a href="/mobile/transactions"
+						   class="button secondary buttonLarge fullWidth">
+							View Transactions
 						</a>
 					</div>
 				</div>

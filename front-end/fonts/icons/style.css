@@ -1,16 +1,16 @@
 @font-face {
-	font-family: 'entypo';
-	src:url('/fonts/icons/fonts/take-home.eot');
-	src:url('/fonts/icons/fonts/take-home.eot?#iefix') format('embedded-opentype'),
-		url('/fonts/icons/fonts/take-home.woff') format('woff'),
-		url('/fonts/icons/fonts/take-home.ttf') format('truetype'),
-		url('/fonts/icons/fonts/take-home.svg#take-home') format('svg');
+	font-family: 'take-home';
+	src:url('fonts/take-home.eot');
+	src:url('fonts/take-home.eot?#iefix') format('embedded-opentype'),
+		url('fonts/take-home.woff') format('woff'),
+		url('fonts/take-home.ttf') format('truetype'),
+		url('fonts/take-home.svg#take-home') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 
 .icon {
-	font-family: 'entypo';
+	font-family: 'take-home';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
