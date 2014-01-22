@@ -1,1 +1,0 @@
-{ "options" : { "create" : "auth" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "nodejitsu_cerebralideas_nodejitsudb1631768071.auth", "name" : "_id_" }, { "v" : 1, "key" : { "id" : 1 }, "unique" : true, "ns" : "nodejitsu_cerebralideas_nodejitsudb1631768071.auth", "name" : "id_1", "sparse" : true } ] }

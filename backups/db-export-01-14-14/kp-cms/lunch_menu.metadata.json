@@ -1,1 +1,0 @@
-{ "options" : { "create" : "lunch_menu" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "kp-cms.lunch_menu", "name" : "_id_" } ] }

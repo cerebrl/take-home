@@ -1,1 +1,0 @@
-{ "options" : { "create" : "auth" }, "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "kp-cms.auth", "name" : "_id_" }, { "v" : 1, "key" : { "id" : 1 }, "unique" : true, "ns" : "kp-cms.auth", "name" : "id_1", "sparse" : true } ] }

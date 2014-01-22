@@ -58,7 +58,8 @@
 							<td data-ng-bind="item.date | date:'MM/dd/yy'"></td>
 							<td data-ng-bind="item.recipient"></td>
 							<td class="right">
-								$<a href="#/{{item._id}}" data-ng-bind="item.amount | number:2"></a>
+								$<a href="#/{{item._id}}"
+									data-ng-bind="item.amount | number:2"></a>
 							</td>
 						</tr>
 					</tbody>
