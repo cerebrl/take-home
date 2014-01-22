@@ -11,8 +11,11 @@ angular.module('TH').controller('ctrlrSendMoney', [
 		$scope.currencySymbol = '$';
 		$scope.showSpinner = false;
 
-		$scope.changeSymbol = function () {
-			switch ($scope.currency) {
+		$scope.changeSymbol = function (currency) {
+
+			console.log(currency);
+
+			switch (currency) {
 				case 'USD':
 					$scope.currencySymbol = '$';
 					break;

@@ -50,7 +50,8 @@
 							   data-ng-model="send.amount" required>
 
 						<select id="currency" data-ng-model="send.currency"
-								data-ng-change="changeSymbol()" name="currency">
+								data-ng-change="changeSymbol(send.currency)"
+								name="currency">
 							<option value="USD" selected>USD</option>
 							<option value="EUR">EUR</option>
 							<option value="JPY">JPY</option>
@@ -77,15 +78,15 @@
 						<p data-ng-bind="formMessage"></p>
 					</div>
 
-					<div class="row actionRow">
+					<div class="row actions sendActions">
 						<div class="mobile_threeColumns center">
-							<button class="button cancel" type="reset"
+							<button class="button buttonLarge cancel fullWidth" type="reset"
 									data-ng-click="clearForm()">
 								Cancel
 							</button>
 						</div><div
 							class="mobile_threeColumns center">
-							<button class="button success" type="submit"
+							<button class="button buttonLarge success fullWidth" type="submit"
 									data-ng-click="sendMoney()">
 								Send Money
 							</button>

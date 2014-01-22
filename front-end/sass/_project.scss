@@ -30,6 +30,9 @@ td > a {
 	text-decoration: none;
 	color: inherit;
 }
+.actions .button {
+	font-weight: 700;
+}
 .backButton {
 	font-weight: 700;
 	color: $gray;
@@ -165,9 +168,9 @@ td > a {
 
 // Transaction Styles
 .transactions {
-	padding: $baseLineHeight 0;
+	padding: 0;
 }
-.actionRow {
+.sendActions {
 	padding-top: $baseLineHeight * 2;
 }
 .cancel {
@@ -249,4 +252,18 @@ select.ng-pristine {
 .backward.ng-leave.ng-leave-active {
 	left: 100%;
 	right: -100%;
+}
+
+@media (max-width: 480px) {
+
+	html {
+		font-size: $smallFontSize;
+	}
+}
+
+@media (max-width: 400px) {
+
+	.actions div {
+		width: 100%;
+	}
 }
