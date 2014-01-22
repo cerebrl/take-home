@@ -88,6 +88,12 @@ td > a {
 		padding-top: $baseLineHeight / 2;
 	}
 }
+.icon-arrow-left9 {
+	font-size: 1.5em;
+	margin-left: -0.3em;
+	vertical-align: -0.2em;
+	display: inline-block;
+}
 .pageTitle {
 	font-size: 1.5em;
 	font-weight: 700;
@@ -190,11 +196,11 @@ select.ng-pristine {
 }
 .viewPanel.menuOpen,
 .viewPanel.menuOpen .topbar {
-	left: 60%;
+	left: 50%;
 }
 .forward.ng-enter,
 .forward.ng-leave {
-	transition: 0.2s;
+	transition: 0.1s;
 }
 .forward.ng-enter {
 	left: 100%;
@@ -214,7 +220,7 @@ select.ng-pristine {
 }
 .backward.ng-enter,
 .backward.ng-leave {
-	transition: 0.2s;
+	transition: 0.1s;
 }
 .backward.ng-enter {
 	left: -100%;
