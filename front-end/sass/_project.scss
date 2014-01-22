@@ -267,3 +267,10 @@ select.ng-pristine {
 		width: 100%;
 	}
 }
+
+@media (max-width: 350px) {
+
+	.actionTable th, .actionTable td {
+		padding: $baseLineHeight / 2;
+	}
+}
