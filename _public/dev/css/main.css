@@ -3097,41 +3097,58 @@ td > a {
   color: inherit;
 }
 
-/* line 35, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 33, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+.backButton {
+  font-weight: 700;
+  color: #6f6e72;
+}
+
+/* line 37, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+.content {
+  overflow-y: auto;
+  position: absolute;
+  top: 4em;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 1.25em;
+}
+
+/* line 48, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .menuOpen {
   left: 60%;
 }
 
-/* line 38, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 51, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .navMenu {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #00457c;
+  background: #6f6e72;
   z-index: 0;
 }
-/* line 45, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 58, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .navMenu h2 {
   color: white;
   padding-left: 0.625em;
-  border-bottom: 1px solid #003762;
+  border-bottom: 1px solid #626165;
 }
 
-/* line 51, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 64, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .navItem a {
   color: white;
   font-weight: 700;
   display: block;
   line-height: 1.5em;
 }
-/* line 57, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 70, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .navItem a i {
   display: inline-block;
   font-size: 1.2em;
   width: 2em;
   text-align: center;
 }
-/* line 64, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 77, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .navItem a:hover {
   background: rgba(0, 0, 0, 0.2);
   -webkit-transition: background 0.1s;
@@ -3140,7 +3157,7 @@ td > a {
   transition: background 0.1s;
 }
 
-/* line 71, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 84, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .topbar {
   height: 4em;
   padding: 0.625em 0;
@@ -3158,16 +3175,20 @@ td > a {
   -o-transform: translateZ(0);
   transform: translateZ(0);
 }
-/* line 84, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 97, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .topbar .button {
   margin: 0;
 }
-/* line 87, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 100, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+.topbar .button i {
+  color: #6f6e72;
+}
+/* line 104, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .topbar .logo {
   padding-top: 0.625em;
 }
 
-/* line 91, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 108, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .icon-arrow-left9 {
   font-size: 1.5em;
   margin-left: -0.3em;
@@ -3175,14 +3196,14 @@ td > a {
   display: inline-block;
 }
 
-/* line 97, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 114, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .pageTitle {
   font-size: 1.5em;
   font-weight: 700;
   color: #00457c;
 }
 
-/* line 104, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 121, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .balance {
   color: #00457c;
   font-size: 5em;
@@ -3190,23 +3211,23 @@ td > a {
   line-height: 1em;
 }
 
-/* line 114, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 131, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .inputPrefixMini .addOn {
   width: 10%;
 }
-/* line 117, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 134, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .inputPrefixMini input {
   width: 60%;
   margin: 0;
 }
-/* line 121, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 138, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .inputPrefixMini select {
   display: inline-block;
   width: 28.5%;
   margin: 0;
 }
 
-/* line 127, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 144, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .icon-spinner {
   position: absolute;
   z-index: 99;
@@ -3222,52 +3243,46 @@ td > a {
 }
 
 @-webkit-keyframes anim-rotate {
-  /* line 141, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+  /* line 158, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
   0% {
     -webkit-transform: rotate(0);
   }
 
-  /* line 144, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+  /* line 161, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
 
-/* line 148, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 167, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+.transactions {
+  padding: 1.25em 0;
+}
+
+/* line 170, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .actionRow {
   padding-top: 2.5em;
 }
 
-/* line 151, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 173, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .cancel {
   background: none;
   border: none;
   color: #6f6e72;
 }
 
-/* line 157, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
-.content {
-  overflow-y: auto;
-  position: absolute;
-  top: 4em;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  padding: 1.25em;
-}
-
-/* line 168, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 180, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 input.ng-pristine, textarea.ng-pristine {
   background: white !important;
   border-color: #b5b5b5 !important;
 }
 
-/* line 172, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 184, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 select.ng-pristine {
   border-color: #b5b5b5 !important;
 }
 
-/* line 177, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 189, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .forward, .viewPanel {
   position: fixed;
   background: whitesmoke url("/phi/framework/img/backgrounds/100-70-3.png");
@@ -3276,10 +3291,10 @@ select.ng-pristine {
   bottom: 0;
   right: 0;
   min-width: 100%;
-  outline: 1px solid #999999;
+  outline: 1px solid #333333;
 }
 
-/* line 190, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 202, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .viewPanel.menuOpen,
 .viewPanel.menuClose,
 .viewPanel.menuOpen .topbar,
@@ -3287,73 +3302,73 @@ select.ng-pristine {
   transition: 0.1s;
 }
 
-/* line 194, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 206, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .viewPanel.menuClose,
 .viewPanel.menuClose .topbar {
   left: 0%;
 }
 
-/* line 198, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 210, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .viewPanel.menuOpen,
 .viewPanel.menuOpen .topbar {
-  left: 50%;
+  left: 60%;
 }
 
-/* line 202, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 214, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .forward.ng-enter,
 .forward.ng-leave {
   transition: 0.1s;
 }
 
-/* line 205, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 217, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .forward.ng-enter {
   left: 100%;
   right: -100%;
 }
 
-/* line 209, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 221, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .forward.ng-enter.ng-enter-active {
   left: 0;
   right: 0;
 }
 
-/* line 213, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 225, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .forward.ng-leave {
   left: 0;
   right: 0;
 }
 
-/* line 217, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 229, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .forward.ng-leave.ng-leave-active {
   left: -100%;
   right: 100%;
 }
 
-/* line 222, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 234, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .backward.ng-enter,
 .backward.ng-leave {
   transition: 0.1s;
 }
 
-/* line 225, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 237, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .backward.ng-enter {
   left: -100%;
   right: 100%;
 }
 
-/* line 229, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 241, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .backward.ng-enter.ng-enter-active {
   left: 0;
   right: 0;
 }
 
-/* line 233, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 245, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .backward.ng-leave {
   left: 0;
   right: 0;
 }
 
-/* line 237, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
+/* line 249, /Users/macpro/Drive/github/take-home/front-end/sass/_project.scss */
 .backward.ng-leave.ng-leave-active {
   left: 100%;
   right: -100%;

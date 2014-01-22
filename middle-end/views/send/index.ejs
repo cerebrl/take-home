@@ -79,13 +79,13 @@
 
 					<div class="row actionRow">
 						<div class="mobile_threeColumns center">
-							<button class="button cancel buttonLarge" type="reset"
+							<button class="button cancel" type="reset"
 									data-ng-click="clearForm()">
 								Cancel
 							</button>
-						</div>
-						<div class="mobile_threeColumns center">
-							<button class="button success buttonLarge" type="submit"
+						</div><div
+							class="mobile_threeColumns center">
+							<button class="button success" type="submit"
 									data-ng-click="sendMoney()">
 								Send Money
 							</button>
@@ -101,17 +101,16 @@
 		<script id="sentSuccess" type="template/angular">
 
 				<div class="topbar row">
-					<div class="mobile_twoColumns left">
-						<a href="#" class="button default"
+					<div class="mobile_oneColumns left">
+						<a href="#" class="button default backButton"
 						   data-ng-click="setDirection('backward')">
-						   <i class="icon-arrow-left9" aria-hidden="true"></i>
 						   Back
 						</a>
 					</div>
-					<div class="mobile_twoColumns center">
+					<div class="mobile_fourColumns center">
 					<h1 class="pageTitle">Success!</h1>
 					</div>
-					<div class="mobile_twoColumns right"></div>
+					<div class="mobile_oneColumns right"></div>
 				</div>
 
 				<div class="content">
