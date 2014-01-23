@@ -1,68 +1,83 @@
 angular.module('TH').controller('ctrlrSendMoney', [
-	'$scope', '$rootScope', 'dataServices',
-	function ($scope, $rootScope, dataServices) {
+		'$scope', '$rootScope', 'dataServices',
+		function ($scope, $rootScope, dataServices) {
 
-		'use strict';
+			'use strict';
 
-		$scope.send = {};
-		$scope.send.currency = 'USD';
-		$scope.currencySymbol = '$';
-		$scope.showSpinner = false;
+			$scope.send = {};
+			$scope.send.currency = 'USD';
+			$scope.currencySymbol = '$';
+			$scope.showSpinner = false;
 
-		$scope.changeSymbol = function (currency) {
+			$scope.changeSymbol = function (currency) {
 
-			console.log(currency);
+				switch (currency) {
+					case 'USD':
+						$scope.currencySymbol = '$';
+						break;
+					case 'EUR':
+						$scope.currencySymbol = '€';
+						break;
+					case 'JPY':
+						$scope.currencySymbol = '¥';
+						break;
+					default:
+						// Intentionally left blank
+				}
+			};
 
-			switch (currency) {
-				case 'USD':
-					$scope.currencySymbol = '$';
-					break;
-				case 'EUR':
-					$scope.currencySymbol = '€';
-					break;
-				case 'JPY':
-					$scope.currencySymbol = '¥';
-					break;
-				default:
-					// Intentionally left blank
-			}
-		};
+			$scope.sendMoney = function () {
 
-		$scope.sendMoney = function () {
+				var url = '/api/send';
 
-			var url = '/api/send';
+				if ($scope.sendMoneyForm.$valid) {
 
-			if ($scope.sendMoneyForm.$valid) {
+					if ($scope.send.amount > 0) {
 
-				if ($scope.send.amount > 0) {
+						$scope.sending = 'active';
+						$scope.showSpinner = true;
 
-					$scope.sending = 'active';
-					$scope.showSpinner = true;
+						dataServices.create(url, $scope.send).
+							then(function () {
 
-					dataServices.create(url, $scope.send).
-						success(function () {
+								$scope.sending = false;
 
-							$scope.sending = false;
+								$rootScope.animate.direction = 'forward';
+								window.location.hash = "#/sent-successfully";
+							});
 
-							$rootScope.animate.direction = 'forward';
-							window.location.hash = "#/sent-successfully";
-						});
+					} else {
+
+						$scope.formMessage = "Error: Amount cannot be a negative number.";
+					}
 
 				} else {
 
-					$scope.formMessage = "Error: Amount cannot be a negative number.";
+					$scope.formMessage = "Error: Please feel in the required fields.";
 				}
+			};
 
-			} else {
+			$scope.clearForm = function () {
 
-				$scope.formMessage = "Error: Please feel in the required fields.";
-			}
-		};
+				$scope.send = {};
+				$scope.sendMoneyForm.$setPristine();
+			};
+		}
+	]).
+	controller('ctrlrSentSuccess', [
+		'$scope', 'dataServices',
+		function ($scope, dataServices) {
 
-		$scope.clearForm = function () {
+			'use strict';
 
-			$scope.send = {};
-			$scope.sendMoneyForm.$setPristine();
-		};
-	}
-]);
+			$scope.sent = {};
+
+			dataServices.query({
+					type: 'send'
+				}).then(function (response) {
+
+					$scope.sent = response.data;
+				});
+
+		}
+	]);

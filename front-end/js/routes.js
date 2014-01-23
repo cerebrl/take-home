@@ -19,7 +19,7 @@ angular.module('TH').
 						when('/sent-successfully', {
 
 							template: document.getElementById('sentSuccess').innerHTML,
-							controller: 'ctrlrSendMoney'
+							controller: 'ctrlrSentSuccess'
 						}).
 
 						otherwise({

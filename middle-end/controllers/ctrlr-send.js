@@ -18,7 +18,12 @@ var init = function () {
 		create: function (req, res) {
 
 			setTimeout(function () {
-				res.json(200);
+				res.json({
+					type: 'send',
+					amount: req.body.amount,
+					currency: req.body.currency,
+					to: req.body.to
+				});
 			}, 2000);
 		}
 	};

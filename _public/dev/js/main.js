@@ -229,7 +229,7 @@ angular.module('TH').
 						when('/sent-successfully', {
 
 							template: document.getElementById('sentSuccess').innerHTML,
-							controller: 'ctrlrSendMoney'
+							controller: 'ctrlrSentSuccess'
 						}).
 
 						otherwise({
@@ -380,8 +380,11 @@ angular.module('TH').
 				search: function search(url, data) {
 					return $http.post(url, {terms: data});
 				},
-				create: function create(url, data, redirectUrl) {
-					return $http.post(url, data);
+				create: function create(url, data) {
+					return $http.post(url, data).then(function (response) {
+
+						dataCache[response.data.type] = response.data;
+					});
 				},
 				update: function update(url, data, redirectUrl) {
 					return $http.put(url, data);
