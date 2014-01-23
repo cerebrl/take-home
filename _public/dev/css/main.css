@@ -3424,7 +3424,7 @@ select.ng-pristine {
   right: -100%;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   /* line 288, ../../../front-end/sass/_project.scss */
   html {
     font-size: 0.9em;
