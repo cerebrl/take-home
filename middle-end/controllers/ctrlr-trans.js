@@ -7,12 +7,9 @@ var init = function () {
 
 	'use strict';
 
-	var collection = {
-			data: [],
-			type: 'transactions',
-			next: 0,
-			limit: 10
-		};
+	var type = 'transactions',
+		limit = 20,
+		total;
 
 	return {
 
@@ -20,20 +17,28 @@ var init = function () {
 
 			Transactions.count().exec(function (err, count) {
 
-				collection.next = count;
-				collection.total = count;
+				var next = count,
+					initialLoad = 80;
+
+				total = count;
 
 				Transactions.find({}).
 					sort({ int: -1 }).
-					limit(collection.limit + 60).
+					limit(initialLoad).
 					exec(function (err, transactions) {
 
-							collection.data = JSON.stringify(transactions);
+							var data = JSON.stringify(transactions);
 
 							res.render('transactions/index', {
 								title: 'Transaction History | PayPal',
 								user:  req.user.toObject(),
-								collection: collection
+								collection: {
+									type: type,
+									next: next - initialLoad,
+									limit: limit,
+									total: total,
+									data: data
+								}
 							});
 						});
 			});
@@ -55,19 +60,24 @@ var init = function () {
 		},
 		collection: function (req, res) {
 
-			collection.next = parseInt(req.query.next, 10);
+			var next = parseInt(req.query.next, 10);
 
 			Transactions.find({}).
 				where('int').
-				lt(collection.next).gte(collection.next - collection.limit).
+				lt(next).gte(next - limit).
 				sort({ int: -1 }).
-				limit(collection.limit).
+				limit(limit).
 				exec(function (err, transactions) {
 
-					collection.data = transactions;
-					collection.next = collection.next - collection.limit;
+					var data = transactions;
 
-					res.json(collection);
+					res.json({
+							type: type,
+							next: next - limit,
+							limit: limit,
+							total: total,
+							data: data
+						});
 				});
 		},
 		instance: function (req, res) {
