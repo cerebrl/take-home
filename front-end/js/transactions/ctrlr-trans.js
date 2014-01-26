@@ -5,16 +5,20 @@ angular.module('TH').
 
 			'use strict';
 
-			var itemParams = {},
-				itemMax = 60;
+			var itemParams = {};
 
+			// Detect the start of a route change
 			$rootScope.$on('$routeChangeStart', function () {
 
+				// Set the current scroll position
 				$scope.$emit('setScrollPosition');
 			});
 
+			// If user is returning to transaction list, emit event to
+			// see if the scrollable element had an previous position
 			$scope.$emit('scrollToPosition');
 
+			// Grab transactions from cache or server
 			dataServices.query({type: 'transactions'}).then(function (response) {
 
 				itemParams = {
@@ -25,8 +29,11 @@ angular.module('TH').
 				$scope.transactions = response.data.collection;
 			});
 
+			// Listen for load event to trigger the grabbing of more items
 			$scope.$on('loadMorePost', function () {
 
+				// If the next item minus the limit is greater than -10,
+				// that means we've run out of items, so don't make the call
 				if ((itemParams.next - itemParams.limit) > -10) {
 
 					dataServices.query({
@@ -51,6 +58,7 @@ angular.module('TH').
 
 			'use strict';
 
+			// Get item
 			dataServices.query({
 
 					type: 'transactions',
@@ -60,58 +68,5 @@ angular.module('TH').
 
 					$scope.trans = response.data;
 				});
-		}
-	]).
-	controller('ctrlrTransNew', [
-		'$scope', '$routeParams', 'dataServices',
-		function ($scope, $routeParams, dataServices) {
-
-			'use strict';
-
-			$scope.trans = {};
-			$scope.trans.currency = 'USD';
-			$scope.currencySymbol = '$';
-
-			$scope.changeSymbol = function () {
-				switch ($scope.currency) {
-					case 'USD':
-						$scope.currencySymbol = '$';
-						break;
-					case 'EUR':
-						$scope.currencySymbol = '€';
-						break;
-					case 'JPY':
-						$scope.currencySymbol = '¥';
-						break;
-					default:
-						// Intentionally left blank
-				}
-			};
-
-			$scope.saveTrans = function () {
-
-				var url = '/api/transactions';
-
-				if ($scope.saveTransactionForm.$valid) {
-
-					$scope.sending = 'active';
-
-					dataServices.create(url, $scope.trans).
-						success(function () {
-
-							$scope.sending = false;
-						});
-
-				} else {
-
-					$scope.formMessage = "Error: Please feel in the required fields.";
-				}
-			};
-
-			$scope.clearForm = function () {
-
-				$scope.send = {};
-				$scope.sendMoneyForm.$setPristine();
-			};
 		}
 	]);

@@ -6,6 +6,7 @@ angular.module('TH').
 
 			var path = window.location.pathname;
 
+			// Test for location specific routes
 			if (path.indexOf('send') !== -1) {
 
 				$routeProvider.

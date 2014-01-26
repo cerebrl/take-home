@@ -1,3 +1,5 @@
+// This is the global data service and cache
+
 angular.module('TH').
 
 	// This is the global data service
@@ -23,7 +25,7 @@ angular.module('TH').
 
 				query: function query(options) {
 
-					// Create "api" url to differentiate from regular "web" requests
+					// Create "api" url to differentiate from traditional "web" requests
 					var url = '/api/' + options.type,
 						deferred = $q.defer(), // Deferred object for caching
 						cacheTimedOut = false; // Default to false to utilize cache
@@ -44,32 +46,31 @@ angular.module('TH').
 						url = url + '?next=' + options.next;
 					}
 
-					if (options.previous) {
-						url = url + '?previous=' + options.previous;
-					}
-
-					// Check to see if cache is available, if not get data
-					if (options.next || options.previous ||
-						!dataCache[options.type] || options.item) {
-
+					// Check to see if user has request an item or lazy loading.
+					// Lastly, if neither of the above is cache is available?
+					if (options.next || options.item || !dataCache[options.type]) {
 
 						return $http.get(url).then(function (response) {
 
-							// Assign incoming data to cache object.
+							// Is this an item?
 							if (options.item) {
-
+								
+								// Assign incoming item to cache object.
 								dataCache[options.type][options.item] =
 										response.collection;
 
+							// Is this lazy loading?
 							} else if (options.next) {
 
-
+								// Add new items to cached array
 								dataCache[options.type].collection =
 										dataCache[options.type].collection.
 												concat(response.data.data);
 
+							// This must be a collection request so …
 							} else {
 
+								// … assign to collection
 								dataCache[options.type].collection = response.data;
 							}
 
@@ -77,8 +78,10 @@ angular.module('TH').
 						});
 					} else { // Use cache!
 
+						// Since we are using promises, we need to async this
 						setTimeout(function () {
 
+							// Call the apply method to alert Angular of change
 							$rootScope.$apply(function() {
 
 								if (options.item) {
@@ -100,6 +103,7 @@ angular.module('TH').
 							});
 						}, 0);
 
+						// return the promise
 						return deferred.promise;
 					}
 				},

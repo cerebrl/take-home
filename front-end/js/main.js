@@ -6,6 +6,8 @@
 	 * Load Javascripts Asynchronously **************************
 	 ************************************************************/
 
+	var location = window.location.pathname;
+
 	// Create global var for attaching PHI modules.
 	window.PHI = {};
 
@@ -23,45 +25,67 @@
 			'send-money': '/js/send',
 			'transactions': '/js/trans',
 
-			// UI/Ix jQuery framework
-			'overlay': '/phi/framework/components/overlay/overlay',
-			'alerts': '/phi/framework/components/alerts/alerts',
-
 			// Phi's Angular Directives
 			'common-inputs': '/phi/framework/directives/dir-common-components',
 			'action-table': '/phi/framework/directives/dir-action-table'
-		},
-
-		// Declare all dependencies
-		shim: {
-			'overlay': ['jquery'],
-			'alerts': ['jquery']
 		}
 	});
 
-	// Load in js
-	require(
-		['angular-route', 'angular-animate', 'send-money', 'transactions',
-		 'common-inputs', 'action-table', 'overlay'],
-		function() {
+	// Test which server route we are accessing
+	if (location.indexOf('send') !== -1) {
 
-			// Menu drawer animation
-			var body = document.getElementsByTagName('body');
+		// Load in send only js
+		require(
+			['angular-route', 'angular-animate', 'send-money', 'action-table',
+			 'common-inputs', 'jquery'],
+			function() {
 
-			$(body).on('click', '#js_menuButton', function () {
+				// Menu drawer animation
+				var body = document.getElementsByTagName('body');
 
-				var mainPanel = document.getElementById('js_mainPanel');
+				$(body).on('click', '#js_menuButton', function () {
 
-				$(mainPanel).toggleClass('menuOpen');
-				$(mainPanel).toggleClass('menuClose');
+					var mainPanel = document.getElementById('js_mainPanel');
 
-				setTimeout(function () {
+					$(mainPanel).toggleClass('menuOpen');
 					$(mainPanel).toggleClass('menuClose');
-				}, 500);
+
+					setTimeout(function () {
+						$(mainPanel).toggleClass('menuClose');
+					}, 500);
+				});
+
+				// Manually bootstrap AngularJS
+				angular.bootstrap(document, ['TH']);
+
 			});
 
-			// Manually bootstrap AngularJS
-			angular.bootstrap(document, ['TH']);
+	} else if (location.indexOf('transactions') !== -1) {
 
-		});
+		// Load in transaction only js
+		require(
+			['angular-route', 'angular-animate', 'transactions', 'action-table',
+			 'common-inputs', 'jquery'],
+			function() {
+
+				// Menu drawer animation
+				var body = document.getElementsByTagName('body');
+
+				$(body).on('click', '#js_menuButton', function () {
+
+					var mainPanel = document.getElementById('js_mainPanel');
+
+					$(mainPanel).toggleClass('menuOpen');
+					$(mainPanel).toggleClass('menuClose');
+
+					setTimeout(function () {
+						$(mainPanel).toggleClass('menuClose');
+					}, 500);
+				});
+
+				// Manually bootstrap AngularJS
+				angular.bootstrap(document, ['TH']);
+
+			});
+	}
 }());

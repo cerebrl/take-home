@@ -15,6 +15,7 @@ var init = function () {
 
 		index: function (req, res) {
 
+			// First, count how many items in DB
 			Transactions.count().exec(function (err, count) {
 
 				var next = count,
@@ -22,9 +23,10 @@ var init = function () {
 
 				total = count;
 
-				Transactions.find({}).
-					sort({ int: -1 }).
-					limit(initialLoad).
+				// Now grab first group of items
+				Transactions.find({}). // All items
+					sort({ int: -1 }). // Sort in reverse count
+					limit(initialLoad). // Limit to initial load limit
 					exec(function (err, transactions) {
 
 							var data = JSON.stringify(transactions);
@@ -62,11 +64,11 @@ var init = function () {
 
 			var next = parseInt(req.query.next, 10);
 
-			Transactions.find({}).
-				where('int').
-				lt(next).gte(next - limit).
-				sort({ int: -1 }).
-				limit(limit).
+			// Grab more items within parameters
+			Transactions.find({}). // All items
+				where('int').lt(next).gte(next - limit). // Creates range
+				sort({ int: -1 }). // Sorts items
+				limit(limit). // Limits return
 				exec(function (err, transactions) {
 
 					var data = transactions;

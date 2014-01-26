@@ -12,7 +12,6 @@
 var Express = require('express'),
 	http = require('http'),
 	passport = require('passport'),
-	fs = require('fs'),
 	env = process.env.NODE_ENV || 'development',
 	port = process.env.PORT || 5000;
 

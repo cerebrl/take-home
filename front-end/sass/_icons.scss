@@ -23,9 +23,6 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-spinner:before {
-	content: "\e1ae";
-}
 .icon-home:before {
 	content: "\e003";
 }
@@ -47,9 +44,6 @@
 .icon-arrow-left9:before {
 	content: "\e3b7";
 }
-.icon-credit:before {
-	content: "\e0d6";
-}
 .icon-keyhole:before {
 	content: "\e1cf";
 }
@@ -58,4 +52,10 @@
 }
 .icon-warning2:before {
 	content: "\e356";
+}
+.icon-credit:before {
+	content: "\e0d5";
+}
+.icon-spinner:before {
+	content: "\e1b0";
 }

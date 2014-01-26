@@ -1,4 +1,4 @@
-/*! take-home | Version: 0.0.1 | Concatenated on 2014-01-23 */
+/*! take-home | Version: 0.0.1 | Concatenated on 2014-01-26 */
 
 angular.module('TH').controller('ctrlrSendMoney', [
 		'$scope', '$rootScope', 'dataServices',
@@ -6,9 +6,9 @@ angular.module('TH').controller('ctrlrSendMoney', [
 
 			'use strict';
 
-			$scope.send = {};
-			$scope.send.currency = 'USD';
-			$scope.currencySymbol = '$';
+			$scope.send = {}; // This will store the send form's data
+			$scope.send.currency = 'USD'; // default
+			$scope.currencySymbol = '$'; // default
 			$scope.showSpinner = false;
 
 			$scope.changeSymbol = function (currency) {
@@ -32,18 +32,24 @@ angular.module('TH').controller('ctrlrSendMoney', [
 
 				var url = '/api/send';
 
+				// Check to see if there are any form errors
 				if ($scope.sendMoneyForm.$valid) {
 
+					// Is "amount" positive
 					if ($scope.send.amount > 0) {
 
+						// Show overlay and spinner
 						$scope.sending = 'active';
 						$scope.showSpinner = true;
 
+						// Use the global data service to POST to server
 						dataServices.create(url, $scope.send).
 							then(function () {
 
 								$scope.sending = false;
+								$scope.showSpinner = false;
 
+								// Set animation direction
 								$rootScope.animate.direction = 'forward';
 								window.location.hash = "#/sent-successfully";
 							});
@@ -74,8 +80,11 @@ angular.module('TH').controller('ctrlrSendMoney', [
 
 			$scope.sent = {};
 
+			// Grab the incoming JSON from the server for sent money.
 			dataServices.query({
+				
 					type: 'send'
+				
 				}).then(function (response) {
 
 					$scope.sent = response.data;

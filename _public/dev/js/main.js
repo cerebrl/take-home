@@ -1,4 +1,8 @@
-/*! take-home | Version: 0.0.1 | Concatenated on 2014-01-23 */
+/*! take-home | Version: 0.0.1 | Concatenated on 2014-01-26 */
+
+// Global controller for client-side behaior.
+// This is not route specific, and mostly
+// controls the animation direction.
 
 angular.module('TH').
 
@@ -10,10 +14,16 @@ angular.module('TH').
 
 				'use strict';
 
+				// It's best to attach in heritable properties to 
+				// objects, rather than straight to scopes
 				$rootScope.animate = {};
 
+				// Default to forward
 				$rootScope.animate.direction = 'forward';
 
+				// "Globally" accessible function that sets
+				// the direction. Pass in either "forward" or
+				// "backward".
 				$scope.setDirection = function (direction) {
 
 					$rootScope.animate.direction = direction;
@@ -23,11 +33,16 @@ angular.module('TH').
 
 ;// End of file
 
+// This is a custom Angular directive for the underlying lazy
+// loading behavior.
+// This is called by adding a HTML attribute of "lazy-load" to an
+// element.
+
 angular.module('TH').
 
 	directive('lazyLoad', [
 
-		'$rootScope',
+		'$rootScope', // Include $rootScope for evented communication
 
 		function ($rootScope) {
 
@@ -35,18 +50,19 @@ angular.module('TH').
 
 			return {
 
+				// This attaches the function to the element
 				link: function (scope, element, attrs) {
 
 					var scrollableEl = document.getElementById('js_scrollable'),
-						itemMax = false,
-						scrollEl = $('#js_scrollable').scrollTop(),
-						scrollPostion,
-						allowScroll = true;
+						lastScrollPos = $(scrollableEl).scrollTop(), // Current position
+						scrolledPosOnLeave, // Stores scroll position on leave of page
+						allowScroll = true; // This is to reduce touching the DOM
 
 					function isElementInViewport (el) {
 
 						var rect = el.getBoundingClientRect();
 
+						// Just check with top and bottom of el are in view
 						return (
 							rect.top >= 0 &&
 							rect.bottom <= (window.innerHeight ||
@@ -56,26 +72,32 @@ angular.module('TH').
 
 					function checkLastElVisibility (el) {
 
-							if (isElementInViewport(el)) {
+						// If element is inside viewport …
+						if (isElementInViewport(el)) {
 
-								$rootScope.$broadcast('loadMorePost');
-							}
+							// … emit an event into to children to load more
+							$rootScope.$broadcast('loadMorePost');
+						}
 					}
 
+					// Listen for storing the scroll position on leave
 					$rootScope.$on('setScrollPosition', function () {
 
-						scrollPostion = $('#js_scrollable').scrollTop();
+						scrolledPosOnLeave = $('#js_scrollable').scrollTop();
 
 					});
 
+					// Listen for setting the scroll position on return
 					$rootScope.$on('scrollToPosition', function () {
 
-
+						// Kind of an ugly way of ensuring elements are not only
+						// loaded but painted to the screen. Async for the win!
 						setTimeout(function () {
-							$('#js_scrollable').scrollTop(scrollPostion);
+							$('#js_scrollable').scrollTop(scrolledPosOnLeave);
 						}, 750);
 					});
 
+					// Attach a ready event to the scrollable element.
 					angular.element(element).ready(function () {
 
 						var len = element[0].getElementsByTagName('tr').length,
@@ -83,7 +105,7 @@ angular.module('TH').
 
 						checkLastElVisibility(lastEl);
 					});
-
+					// Attach a resize event to the scrollable element.
 					angular.element(window).on('resize', function () {
 
 						var len = element[0].getElementsByTagName('tr').length,
@@ -91,23 +113,27 @@ angular.module('TH').
 
 						checkLastElVisibility(lastEl);
 					});
-
+					// Attach a scroll event to the scrollable element.
 					angular.element(scrollableEl).on('scroll', function () {
 
+						var len, lastEl, firstEl;
+
+						// Check to see if we should detect scrolling
 						if (allowScroll) {
 
-							var len, lastEl, firstEl;
-
+							// If so, set to false
 							allowScroll = false;
 
+							// Now allow scrolling 100ms from now.
 							setTimeout(function () {
 
 								allowScroll = true;
 							}, 100);
 
-							if (scrollEl < $('#js_scrollable').scrollTop()) {
+							// Detect of we are scrolling down
+							if (lastScrollPos < $('#js_scrollable').scrollTop()) {
 
-								scrollEl = $('#js_scrollable').scrollTop();
+								lastScrollPos = $('#js_scrollable').scrollTop();
 
 								len = element[0].getElementsByTagName('tr').length;
 								lastEl = element[0].getElementsByTagName('tr')[len - 16];
@@ -115,10 +141,11 @@ angular.module('TH').
 
 								checkLastElVisibility(lastEl);
 
-							} else {
+							} else { // Looks like we are scrolling up
 
 								allowScroll = false;
 
+								// Set to false and place a larger timer for true
 								setTimeout(function () {
 
 									allowScroll = true;
@@ -142,6 +169,8 @@ angular.module('TH').
 	 * Load Javascripts Asynchronously **************************
 	 ************************************************************/
 
+	var location = window.location.pathname;
+
 	// Create global var for attaching PHI modules.
 	window.PHI = {};
 
@@ -159,47 +188,69 @@ angular.module('TH').
 			'send-money': '/js/send',
 			'transactions': '/js/trans',
 
-			// UI/Ix jQuery framework
-			'overlay': '/phi/framework/components/overlay/overlay',
-			'alerts': '/phi/framework/components/alerts/alerts',
-
 			// Phi's Angular Directives
 			'common-inputs': '/phi/framework/directives/dir-common-components',
 			'action-table': '/phi/framework/directives/dir-action-table'
-		},
-
-		// Declare all dependencies
-		shim: {
-			'overlay': ['jquery'],
-			'alerts': ['jquery']
 		}
 	});
 
-	// Load in js
-	require(
-		['angular-route', 'angular-animate', 'send-money', 'transactions',
-		 'common-inputs', 'action-table', 'overlay'],
-		function() {
+	// Test which server route we are accessing
+	if (location.indexOf('send') !== -1) {
 
-			// Menu drawer animation
-			var body = document.getElementsByTagName('body');
+		// Load in send only js
+		require(
+			['angular-route', 'angular-animate', 'send-money', 'action-table',
+			 'common-inputs', 'jquery'],
+			function() {
 
-			$(body).on('click', '#js_menuButton', function () {
+				// Menu drawer animation
+				var body = document.getElementsByTagName('body');
 
-				var mainPanel = document.getElementById('js_mainPanel');
+				$(body).on('click', '#js_menuButton', function () {
 
-				$(mainPanel).toggleClass('menuOpen');
-				$(mainPanel).toggleClass('menuClose');
+					var mainPanel = document.getElementById('js_mainPanel');
 
-				setTimeout(function () {
+					$(mainPanel).toggleClass('menuOpen');
 					$(mainPanel).toggleClass('menuClose');
-				}, 500);
+
+					setTimeout(function () {
+						$(mainPanel).toggleClass('menuClose');
+					}, 500);
+				});
+
+				// Manually bootstrap AngularJS
+				angular.bootstrap(document, ['TH']);
+
 			});
 
-			// Manually bootstrap AngularJS
-			angular.bootstrap(document, ['TH']);
+	} else if (location.indexOf('transactions') !== -1) {
 
-		});
+		// Load in transaction only js
+		require(
+			['angular-route', 'angular-animate', 'transactions', 'action-table',
+			 'common-inputs', 'jquery'],
+			function() {
+
+				// Menu drawer animation
+				var body = document.getElementsByTagName('body');
+
+				$(body).on('click', '#js_menuButton', function () {
+
+					var mainPanel = document.getElementById('js_mainPanel');
+
+					$(mainPanel).toggleClass('menuOpen');
+					$(mainPanel).toggleClass('menuClose');
+
+					setTimeout(function () {
+						$(mainPanel).toggleClass('menuClose');
+					}, 500);
+				});
+
+				// Manually bootstrap AngularJS
+				angular.bootstrap(document, ['TH']);
+
+			});
+	}
 }());
 
 
@@ -213,6 +264,7 @@ angular.module('TH').
 
 			var path = window.location.pathname;
 
+			// Test for location specific routes
 			if (path.indexOf('send') !== -1) {
 
 				$routeProvider.
@@ -269,6 +321,8 @@ angular.module('TH').
 
 ;// End of file
 
+// This is the global data service and cache
+
 angular.module('TH').
 
 	// This is the global data service
@@ -294,7 +348,7 @@ angular.module('TH').
 
 				query: function query(options) {
 
-					// Create "api" url to differentiate from regular "web" requests
+					// Create "api" url to differentiate from traditional "web" requests
 					var url = '/api/' + options.type,
 						deferred = $q.defer(), // Deferred object for caching
 						cacheTimedOut = false; // Default to false to utilize cache
@@ -315,32 +369,31 @@ angular.module('TH').
 						url = url + '?next=' + options.next;
 					}
 
-					if (options.previous) {
-						url = url + '?previous=' + options.previous;
-					}
-
-					// Check to see if cache is available, if not get data
-					if (options.next || options.previous ||
-						!dataCache[options.type] || options.item) {
-
+					// Check to see if user has request an item or lazy loading.
+					// Lastly, if neither of the above is cache is available?
+					if (options.next || options.item || !dataCache[options.type]) {
 
 						return $http.get(url).then(function (response) {
 
-							// Assign incoming data to cache object.
+							// Is this an item?
 							if (options.item) {
-
+								
+								// Assign incoming item to cache object.
 								dataCache[options.type][options.item] =
 										response.collection;
 
+							// Is this lazy loading?
 							} else if (options.next) {
 
-
+								// Add new items to cached array
 								dataCache[options.type].collection =
 										dataCache[options.type].collection.
 												concat(response.data.data);
 
+							// This must be a collection request so …
 							} else {
 
+								// … assign to collection
 								dataCache[options.type].collection = response.data;
 							}
 
@@ -348,8 +401,10 @@ angular.module('TH').
 						});
 					} else { // Use cache!
 
+						// Since we are using promises, we need to async this
 						setTimeout(function () {
 
+							// Call the apply method to alert Angular of change
 							$rootScope.$apply(function() {
 
 								if (options.item) {
@@ -371,6 +426,7 @@ angular.module('TH').
 							});
 						}, 0);
 
+						// return the promise
 						return deferred.promise;
 					}
 				},

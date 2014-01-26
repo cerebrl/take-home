@@ -34,28 +34,26 @@ module.exports = function (app, passport, db) {
 
 	// Create a writable stream to the log file
 	// This is used below in express.log()
-	var logStream = fs.createWriteStream(__dirname + '/../logs/middle-end.log', {'flags': 'a'});
+	var logStream = fs.createWriteStream(__dirname + '/../logs/middle-end.log',
+										 {'flags': 'a'});
+
 
 	/**********************************
 	 * GLOBAL CONFIGURATIONS
 	 */
 
-
 	// VIEW ENGINE
 	// Set ejs as our view engine
+	app.set('views', root + '/middle-end/views');
 	app.set('view engine', 'ejs');
 
-	// Use flash to provide login messages
+	// Use Connect's flash to provide login messages
 	app.use(flash());
 
 	// Use this instead of express.bodyParser(), which is not secure
-	// If .multipart() is needed, use it explicitly where needed
+	// If .multipart() is needed, use it explicitly when needed
 	app.use(express.json());
 	app.use(express.urlencoded());
-
-	// Set views base path and engine
-	app.set('views', root + '/middle-end/views');
-	app.set('view engine', 'ejs');
 
 	app.use(express.favicon());
 
@@ -64,11 +62,9 @@ module.exports = function (app, passport, db) {
 		format: 'dev'
 	}));
 
-	// This is mostly not needed, but it allows for more
-	// of the HTTP verbs, rather than just GET and POST with
+	// This allows for more HTTP verbs, rather than just GET and POST with
 	// traditional form actions.
 	app.use(express.methodOverride());
-
 
 	app.configure('development', function () {
 

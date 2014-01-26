@@ -770,8 +770,8 @@ p a, p a:visited {
 
 /* line 713, ../../../front-end/phi/framework/core/_globals.scss */
 .secondary, .info {
-  background-color: #559fce;
-  border: 1px solid #3687ba;
+  background-color: #0079c1;
+  border: 1px solid #00598e;
   color: white;
 }
 /* line 718, ../../../front-end/phi/framework/core/_globals.scss */
@@ -2990,63 +2990,63 @@ div.progress.round .meter {
 }
 
 /* line 26, ../../../front-end/sass/_icons.scss */
-.icon-spinner:before {
-  content: "\e1ae";
-}
-
-/* line 29, ../../../front-end/sass/_icons.scss */
 .icon-home:before {
   content: "\e003";
 }
 
-/* line 32, ../../../front-end/sass/_icons.scss */
+/* line 29, ../../../front-end/sass/_icons.scss */
 .icon-menu2:before {
   content: "\e2ac";
 }
 
-/* line 35, ../../../front-end/sass/_icons.scss */
+/* line 32, ../../../front-end/sass/_icons.scss */
 .icon-github3:before {
   content: "\e4b8";
 }
 
-/* line 38, ../../../front-end/sass/_icons.scss */
+/* line 35, ../../../front-end/sass/_icons.scss */
 .icon-arrow-up8:before {
   content: "\e3b4";
 }
 
-/* line 41, ../../../front-end/sass/_icons.scss */
+/* line 38, ../../../front-end/sass/_icons.scss */
 .icon-arrow-right8:before {
   content: "\e3b5";
 }
 
-/* line 44, ../../../front-end/sass/_icons.scss */
+/* line 41, ../../../front-end/sass/_icons.scss */
 .icon-arrow-down9:before {
   content: "\e3b6";
 }
 
-/* line 47, ../../../front-end/sass/_icons.scss */
+/* line 44, ../../../front-end/sass/_icons.scss */
 .icon-arrow-left9:before {
   content: "\e3b7";
 }
 
-/* line 50, ../../../front-end/sass/_icons.scss */
-.icon-credit:before {
-  content: "\e0d6";
-}
-
-/* line 53, ../../../front-end/sass/_icons.scss */
+/* line 47, ../../../front-end/sass/_icons.scss */
 .icon-keyhole:before {
   content: "\e1cf";
 }
 
-/* line 56, ../../../front-end/sass/_icons.scss */
+/* line 50, ../../../front-end/sass/_icons.scss */
 .icon-mail-send:before {
   content: "\e0ed";
 }
 
-/* line 59, ../../../front-end/sass/_icons.scss */
+/* line 53, ../../../front-end/sass/_icons.scss */
 .icon-warning2:before {
   content: "\e356";
+}
+
+/* line 56, ../../../front-end/sass/_icons.scss */
+.icon-credit:before {
+  content: "\e0d5";
+}
+
+/* line 59, ../../../front-end/sass/_icons.scss */
+.icon-spinner:before {
+  content: "\e1b0";
 }
 
 /* line 1, ../../../front-end/sass/_project.scss */
@@ -3057,16 +3057,17 @@ body, html {
 }
 
 /* line 6, ../../../front-end/sass/_project.scss */
-h1, h2, h3 h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Open Sans", Verdana, sans-serif;
+  color: #00457c;
 }
 
-/* line 9, ../../../front-end/sass/_project.scss */
+/* line 10, ../../../front-end/sass/_project.scss */
 h1, h2 {
   font-weight: 300;
 }
 
-/* line 12, ../../../front-end/sass/_project.scss */
+/* line 15, ../../../front-end/sass/_project.scss */
 .rowMain {
   padding: 1.25em;
   position: relative;
@@ -3075,40 +3076,35 @@ h1, h2 {
   min-height: 100%;
 }
 
-/* line 19, ../../../front-end/sass/_project.scss */
+/* line 24, ../../../front-end/sass/_project.scss */
 .offscreen {
   position: fixed;
   top: -50em;
 }
 
-/* line 23, ../../../front-end/sass/_project.scss */
+/* line 30, ../../../front-end/sass/_project.scss */
 .alertBox {
   margin: 1.25em 0 0;
 }
 
-/* line 26, ../../../front-end/sass/_project.scss */
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
-
-/* line 29, ../../../front-end/sass/_project.scss */
-td > a {
+/* line 35, ../../../front-end/sass/_project.scss */
+.actionTable td > a {
   text-decoration: none;
   color: inherit;
 }
 
-/* line 33, ../../../front-end/sass/_project.scss */
+/* line 39, ../../../front-end/sass/_project.scss */
 .actions .button {
   font-weight: 700;
 }
 
-/* line 36, ../../../front-end/sass/_project.scss */
+/* line 42, ../../../front-end/sass/_project.scss */
 .backButton {
   font-weight: 700;
   color: #6f6e72;
 }
 
-/* line 40, ../../../front-end/sass/_project.scss */
+/* line 47, ../../../front-end/sass/_project.scss */
 .content {
   overflow-y: auto;
   position: absolute;
@@ -3119,12 +3115,12 @@ td > a {
   padding: 1.25em;
 }
 
-/* line 51, ../../../front-end/sass/_project.scss */
+/* line 58, ../../../front-end/sass/_project.scss */
 .menuOpen {
   left: 60%;
 }
 
-/* line 54, ../../../front-end/sass/_project.scss */
+/* line 61, ../../../front-end/sass/_project.scss */
 .navMenu {
   position: fixed;
   width: 100%;
@@ -3132,37 +3128,37 @@ td > a {
   background: #6f6e72;
   z-index: 0;
 }
-/* line 61, ../../../front-end/sass/_project.scss */
+/* line 68, ../../../front-end/sass/_project.scss */
 .navMenu h2 {
   color: white;
   padding-left: 0.625em;
   border-bottom: 1px solid #626165;
 }
 
-/* line 67, ../../../front-end/sass/_project.scss */
+/* line 74, ../../../front-end/sass/_project.scss */
 .navItem a {
   color: white;
   font-weight: 700;
   display: block;
   line-height: 1.5em;
 }
-/* line 73, ../../../front-end/sass/_project.scss */
+/* line 80, ../../../front-end/sass/_project.scss */
 .navItem a i {
   display: inline-block;
   font-size: 1.2em;
   width: 2em;
   text-align: center;
 }
-/* line 80, ../../../front-end/sass/_project.scss */
+/* line 87, ../../../front-end/sass/_project.scss */
 .navItem a:hover {
   background: rgba(0, 0, 0, 0.2);
-  -webkit-transition: background 0.1s;
-  -moz-transition: background 0.1s;
-  -o-transition: background 0.1s;
-  transition: background 0.1s;
+  -webkit-transition: background 0.05s;
+  -moz-transition: background 0.05s;
+  -o-transition: background 0.05s;
+  transition: background 0.05s;
 }
 
-/* line 87, ../../../front-end/sass/_project.scss */
+/* line 94, ../../../front-end/sass/_project.scss */
 .topbar {
   height: 4em;
   padding: 0.625em 0;
@@ -3180,35 +3176,27 @@ td > a {
   -o-transform: translateZ(0);
   transform: translateZ(0);
 }
-/* line 100, ../../../front-end/sass/_project.scss */
+/* line 107, ../../../front-end/sass/_project.scss */
 .topbar .button {
   margin: 0;
 }
-/* line 103, ../../../front-end/sass/_project.scss */
+/* line 110, ../../../front-end/sass/_project.scss */
 .topbar .button i {
   color: #6f6e72;
 }
-/* line 107, ../../../front-end/sass/_project.scss */
+/* line 114, ../../../front-end/sass/_project.scss */
 .topbar .logo {
   padding-top: 0.625em;
 }
 
-/* line 111, ../../../front-end/sass/_project.scss */
-.icon-arrow-left9 {
-  font-size: 1.5em;
-  margin-left: -0.3em;
-  vertical-align: -0.2em;
-  display: inline-block;
-}
-
-/* line 117, ../../../front-end/sass/_project.scss */
+/* line 118, ../../../front-end/sass/_project.scss */
 .pageTitle {
   font-size: 1.5em;
   font-weight: 700;
   color: #00457c;
 }
 
-/* line 124, ../../../front-end/sass/_project.scss */
+/* line 125, ../../../front-end/sass/_project.scss */
 .balance {
   color: #00457c;
   font-size: 5em;
@@ -3216,16 +3204,16 @@ td > a {
   line-height: 1em;
 }
 
-/* line 134, ../../../front-end/sass/_project.scss */
+/* line 135, ../../../front-end/sass/_project.scss */
 .inputPrefixMini .addOn {
   width: 10%;
 }
-/* line 137, ../../../front-end/sass/_project.scss */
+/* line 138, ../../../front-end/sass/_project.scss */
 .inputPrefixMini input {
   width: 60%;
   margin: 0;
 }
-/* line 141, ../../../front-end/sass/_project.scss */
+/* line 142, ../../../front-end/sass/_project.scss */
 .inputPrefixMini select {
   display: inline-block;
   width: 28.5%;
@@ -3233,7 +3221,7 @@ td > a {
   vertical-align: top;
 }
 
-/* line 148, ../../../front-end/sass/_project.scss */
+/* line 149, ../../../front-end/sass/_project.scss */
 .icon-spinner {
   position: absolute;
   z-index: 99;
@@ -3257,82 +3245,87 @@ td > a {
 }
 
 @-webkit-keyframes spin {
-  /* line 166, ../../../front-end/sass/_project.scss */
+  /* line 167, ../../../front-end/sass/_project.scss */
   0% {
     -webkit-transform: rotate(0);
   }
 
-  /* line 169, ../../../front-end/sass/_project.scss */
+  /* line 170, ../../../front-end/sass/_project.scss */
   100% {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-moz-keyframes spin {
-  /* line 174, ../../../front-end/sass/_project.scss */
+  /* line 175, ../../../front-end/sass/_project.scss */
   0% {
     -moz-transform: rotate(0);
   }
 
-  /* line 177, ../../../front-end/sass/_project.scss */
+  /* line 178, ../../../front-end/sass/_project.scss */
   100% {
     -moz-transform: rotate(360deg);
   }
 }
 
 @-o-keyframes spin {
-  /* line 182, ../../../front-end/sass/_project.scss */
+  /* line 183, ../../../front-end/sass/_project.scss */
   0% {
     -o-transform: rotate(0);
   }
 
-  /* line 185, ../../../front-end/sass/_project.scss */
+  /* line 186, ../../../front-end/sass/_project.scss */
   100% {
     -o-transform: rotate(360deg);
   }
 }
 
 @keyframes spin {
-  /* line 190, ../../../front-end/sass/_project.scss */
+  /* line 191, ../../../front-end/sass/_project.scss */
   0% {
     transform: rotate(0);
   }
 
-  /* line 193, ../../../front-end/sass/_project.scss */
+  /* line 194, ../../../front-end/sass/_project.scss */
   100% {
     transform: rotate(360deg);
   }
 }
 
-/* line 199, ../../../front-end/sass/_project.scss */
+/* line 200, ../../../front-end/sass/_project.scss */
 .transactions {
   padding: 0;
 }
 
-/* line 202, ../../../front-end/sass/_project.scss */
+/* line 203, ../../../front-end/sass/_project.scss */
 .sendActions {
   padding-top: 2.5em;
 }
 
-/* line 205, ../../../front-end/sass/_project.scss */
+/* line 206, ../../../front-end/sass/_project.scss */
 .cancel {
   background: none;
   border: none;
   color: #6f6e72;
 }
 
-/* line 212, ../../../front-end/sass/_project.scss */
+/* line 213, ../../../front-end/sass/_project.scss */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+/* line 216, ../../../front-end/sass/_project.scss */
 input.ng-pristine, textarea.ng-pristine {
   background: white !important;
   border-color: #b5b5b5 !important;
 }
 
-/* line 216, ../../../front-end/sass/_project.scss */
+/* line 220, ../../../front-end/sass/_project.scss */
 select.ng-pristine {
   border-color: #b5b5b5 !important;
 }
 
-/* line 221, ../../../front-end/sass/_project.scss */
+/* line 225, ../../../front-end/sass/_project.scss */
 .forward, .viewPanel {
   position: fixed;
   background: whitesmoke url("/phi/framework/img/backgrounds/100-70-3.png");
@@ -3344,7 +3337,7 @@ select.ng-pristine {
   outline: 1px solid #333333;
 }
 
-/* line 234, ../../../front-end/sass/_project.scss */
+/* line 238, ../../../front-end/sass/_project.scss */
 .viewPanel.menuOpen,
 .viewPanel.menuClose,
 .viewPanel.menuOpen .topbar,
@@ -3352,92 +3345,92 @@ select.ng-pristine {
   transition: 0.1s;
 }
 
-/* line 238, ../../../front-end/sass/_project.scss */
+/* line 242, ../../../front-end/sass/_project.scss */
 .viewPanel.menuClose,
 .viewPanel.menuClose .topbar {
   left: 0%;
 }
 
-/* line 242, ../../../front-end/sass/_project.scss */
+/* line 246, ../../../front-end/sass/_project.scss */
 .viewPanel.menuOpen,
 .viewPanel.menuOpen .topbar {
   left: 60%;
 }
 
-/* line 246, ../../../front-end/sass/_project.scss */
+/* line 250, ../../../front-end/sass/_project.scss */
 .forward.ng-enter,
 .forward.ng-leave {
   transition: 0.1s;
 }
 
-/* line 249, ../../../front-end/sass/_project.scss */
+/* line 253, ../../../front-end/sass/_project.scss */
 .forward.ng-enter {
   left: 100%;
   right: -100%;
 }
 
-/* line 253, ../../../front-end/sass/_project.scss */
+/* line 257, ../../../front-end/sass/_project.scss */
 .forward.ng-enter.ng-enter-active {
   left: 0;
   right: 0;
 }
 
-/* line 257, ../../../front-end/sass/_project.scss */
+/* line 261, ../../../front-end/sass/_project.scss */
 .forward.ng-leave {
   left: 0;
   right: 0;
 }
 
-/* line 261, ../../../front-end/sass/_project.scss */
+/* line 265, ../../../front-end/sass/_project.scss */
 .forward.ng-leave.ng-leave-active {
   left: -100%;
   right: 100%;
 }
 
-/* line 266, ../../../front-end/sass/_project.scss */
+/* line 270, ../../../front-end/sass/_project.scss */
 .backward.ng-enter,
 .backward.ng-leave {
   transition: 0.1s;
 }
 
-/* line 269, ../../../front-end/sass/_project.scss */
+/* line 273, ../../../front-end/sass/_project.scss */
 .backward.ng-enter {
   left: -100%;
   right: 100%;
 }
 
-/* line 273, ../../../front-end/sass/_project.scss */
+/* line 277, ../../../front-end/sass/_project.scss */
 .backward.ng-enter.ng-enter-active {
   left: 0;
   right: 0;
 }
 
-/* line 277, ../../../front-end/sass/_project.scss */
+/* line 281, ../../../front-end/sass/_project.scss */
 .backward.ng-leave {
   left: 0;
   right: 0;
 }
 
-/* line 281, ../../../front-end/sass/_project.scss */
+/* line 285, ../../../front-end/sass/_project.scss */
 .backward.ng-leave.ng-leave-active {
   left: 100%;
   right: -100%;
 }
 
 @media (max-width: 500px) {
-  /* line 288, ../../../front-end/sass/_project.scss */
+  /* line 294, ../../../front-end/sass/_project.scss */
   html {
     font-size: 0.9em;
   }
 }
 @media (max-width: 400px) {
-  /* line 295, ../../../front-end/sass/_project.scss */
+  /* line 301, ../../../front-end/sass/_project.scss */
   .actions div {
     width: 100%;
   }
 }
 @media (max-width: 350px) {
-  /* line 302, ../../../front-end/sass/_project.scss */
+  /* line 308, ../../../front-end/sass/_project.scss */
   .actionTable th, .actionTable td {
     padding: 0.625em;
   }

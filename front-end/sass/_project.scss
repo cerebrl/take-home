@@ -3,12 +3,15 @@ body, html {
 	height: 100%;
 	overflow-x: hidden;
 }
-h1, h2, h3 h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: $sansFontFamily;
+	color: $blue;
 }
 h1, h2 {
 	font-weight: 300;
 }
+
+// Basically the container or wrapper
 .rowMain {
 	padding: $baseLineHeight;
 	position: relative;
@@ -16,17 +19,20 @@ h1, h2 {
 	margin: 0;
 	min-height: 100%;
 }
+
+// Hide text, show icon
 .offscreen {
 	position: fixed;
 	top: -50em;
 }
+
+// Form error messaging
 .alertBox {
 	margin: $baseLineHeight 0 0;
 }
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
-td > a {
+
+// Remove underlines in action tables
+.actionTable td > a {
 	text-decoration: none;
 	color: inherit;
 }
@@ -37,6 +43,7 @@ td > a {
 	font-weight: 700;
 	color: $gray;
 }
+// This makes up the scrollable area under the topbar
 .content {
 	overflow-y: auto;
 	position: absolute;
@@ -79,7 +86,7 @@ td > a {
 
 	&:hover {
 		background: rgba(0, 0, 0, 0.2);
-		@include single-transition(background, 0.1s);
+		@include single-transition(background, 0.05s);
 	}
 }
 
@@ -107,12 +114,6 @@ td > a {
 	.logo {
 		padding-top: $baseLineHeight / 2;
 	}
-}
-.icon-arrow-left9 {
-	font-size: 1.5em;
-	margin-left: -0.3em;
-	vertical-align: -0.2em;
-	display: inline-block;
 }
 .pageTitle {
 	font-size: 1.5em;
@@ -209,6 +210,9 @@ td > a {
 }
 
 // Angular Specific Stylings
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 input.ng-pristine, textarea.ng-pristine {
 	background: $inputBgColor !important;
 	border-color: $inputBorderColor !important;
@@ -283,6 +287,8 @@ select.ng-pristine {
 	right: -100%;
 }
 
+// A bit more responsiveness to ensure UI is
+// visible on small screens
 @media (max-width: 500px) {
 
 	html {

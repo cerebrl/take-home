@@ -206,7 +206,8 @@ module.exports = function(grunt) {
 	// Default tasks for grunt.
 	grunt.registerTask('default', ['jshint', 'concurrent']);
 
-	// Tasks for grunt dev (rarely used, but available).
+	// Tasks for grunt dev'ing;
+	// use if you add files to project or want to rebuild dev folder.
 	grunt.registerTask('dev', [
 			'jshint',
 			'uglify:requirejs',
@@ -216,7 +217,9 @@ module.exports = function(grunt) {
 			'compass:dev'
 		]);
 
-	// Production build task.
+	// Production build task;
+	// this rebuilds both dev and dist folders AND runs the app in
+	// PRODUCTION mode!
 	grunt.registerTask('build', [
 			'jshint',
 			'clean:dev',
